@@ -1,0 +1,10 @@
+E:\Project\ASP.NET\myShop\LibRepository\bin\Debug\LibRepository.dll.config
+E:\Project\ASP.NET\myShop\LibRepository\bin\Debug\LibRepository.dll
+E:\Project\ASP.NET\myShop\LibRepository\bin\Debug\LibRepository.pdb
+E:\Project\ASP.NET\myShop\LibRepository\bin\Debug\EntityFramework.dll
+E:\Project\ASP.NET\myShop\LibRepository\bin\Debug\EntityFramework.SqlServer.dll
+E:\Project\ASP.NET\myShop\LibRepository\bin\Debug\EntityFramework.xml
+E:\Project\ASP.NET\myShop\LibRepository\bin\Debug\EntityFramework.SqlServer.xml
+E:\Project\ASP.NET\myShop\LibRepository\obj\Debug\LibRepository.csproj.CoreCompileInputs.cache
+E:\Project\ASP.NET\myShop\LibRepository\obj\Debug\LibRepository.dll
+E:\Project\ASP.NET\myShop\LibRepository\obj\Debug\LibRepository.pdb

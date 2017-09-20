@@ -1,0 +1,6 @@
+E:\Project\ASP.NET\myShop\LibResponse\bin\Debug\LibResponse.dll
+E:\Project\ASP.NET\myShop\LibResponse\bin\Debug\LibResponse.pdb
+E:\Project\ASP.NET\myShop\LibResponse\obj\Debug\LibResponse.csprojResolveAssemblyReference.cache
+E:\Project\ASP.NET\myShop\LibResponse\obj\Debug\LibResponse.csproj.CoreCompileInputs.cache
+E:\Project\ASP.NET\myShop\LibResponse\obj\Debug\LibResponse.dll
+E:\Project\ASP.NET\myShop\LibResponse\obj\Debug\LibResponse.pdb
