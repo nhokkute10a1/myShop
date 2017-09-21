@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0829FC2D-4C03-43A5-87ED-16832CF0BA11}</ProjectGuid>
+    <ProjectGuid>{6A2ACFC2-C31E-45B0-86F2-CF1D289E74B2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>UnitOfWork</RootNamespace>
@@ -52,22 +52,22 @@
     <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataModel\DataModel.csproj">
-      <Project>{23ae0934-d6f0-4c48-963c-fe15250c3599}</Project>
-      <Name>DataModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Entity\Entity.csproj">
-      <Project>{c0e0048e-76e3-4bd9-a279-d9f4f5eb0578}</Project>
-      <Name>Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LibRepository\LibRepository.csproj">
-      <Project>{c661b84c-c24b-4e19-acf4-3d47e74ce65c}</Project>
-      <Name>LibRepository</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DbContextPOCO\DbContextPOCO.csproj">
+      <Project>{c112455a-acf8-4170-99ed-6f3044792f86}</Project>
+      <Name>DbContextPOCO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LibRepository\LibRepository.csproj">
+      <Project>{13b89444-009c-4cbf-aaae-db3d19f34a42}</Project>
+      <Name>LibRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LibResponse\LibResponse.csproj">
+      <Project>{c2948c1b-ec75-4f1a-a98e-d962d60fa1b6}</Project>
+      <Name>LibResponse</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

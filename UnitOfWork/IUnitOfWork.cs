@@ -1,16 +1,21 @@
-﻿using Entity.EntityModel;
+﻿using DbContextPOCO.Entity;
 using LibRepository;
-using System;
 
 namespace UnitOfWork
 {
-    //step 3
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork
     {
         #region[Category]
-        /*--Khởi tạo interface-Category--*/
+        /*--Khởi tạo interface-SysAutoId--*/
         IGenericRepository<Category> CategoryRepo { get; }
         #endregion
+
+        #region[Menu]
+        /*--Khởi tạo interface-SysAutoId--*/
+        IGenericRepository<Menu> MenuRepo { get; }
+        #endregion
+
+
         /*--Khởi tạo phương thức--*/
         void Save();
     }

@@ -58,7 +58,5 @@ namespace LibRepository
         {
             return dbset.FirstOrDefault(predicate);
         }
-
-        
     }
 }

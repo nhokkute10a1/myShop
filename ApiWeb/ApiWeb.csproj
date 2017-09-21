@@ -9,7 +9,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C3C9EAF3-907B-465B-8139-FD2A5C390B97}</ProjectGuid>
+    <ProjectGuid>{D42CFBD7-2A63-440D-ABBC-E515CCAED734}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -156,7 +156,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\AdminCategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MenuController.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
     <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
@@ -266,24 +266,16 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">
-      <Project>{23ae0934-d6f0-4c48-963c-fe15250c3599}</Project>
+      <Project>{64d881e4-b7c8-4bc6-afd0-f7cbf7879b02}</Project>
       <Name>DataModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\DataServices\DataServices.csproj">
-      <Project>{dd7958b2-e8b4-4f4a-8777-2ae84286fcbe}</Project>
+      <Project>{d4459e64-6b09-446e-873f-745e79a8d4df}</Project>
       <Name>DataServices</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LibRepository\LibRepository.csproj">
-      <Project>{c661b84c-c24b-4e19-acf4-3d47e74ce65c}</Project>
-      <Name>LibRepository</Name>
-    </ProjectReference>
     <ProjectReference Include="..\LibResponse\LibResponse.csproj">
-      <Project>{e03bee79-2b49-4ad0-acd0-4098e122b9b1}</Project>
+      <Project>{c2948c1b-ec75-4f1a-a98e-d962d60fa1b6}</Project>
       <Name>LibResponse</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UnitOfWork\UnitOfWork.csproj">
-      <Project>{0829fc2d-4c03-43a5-87ed-16832cf0ba11}</Project>
-      <Name>UnitOfWork</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
@@ -300,16 +292,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>61228</DevelopmentServerPort>
-          <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:61228/</IISUrl>
-          <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
-          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>

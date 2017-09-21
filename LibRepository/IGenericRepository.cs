@@ -12,6 +12,7 @@ namespace LibRepository
         bool GetAny(Expression<Func<T, bool>> predicate);
 
         IQueryable<T> GetAll();
+
         T FirstOrDefault(Expression<Func<T, bool>> predicate);
 
         IEnumerable<T> ExcCommand(string obj, params object[] parameters);
