@@ -17,3 +17,4 @@ E:\Project\ASP.NET\EShopPoCo\DataServices\obj\Debug\DataServices.csprojResolveAs
 E:\Project\ASP.NET\EShopPoCo\DataServices\obj\Debug\DataServices.csproj.CoreCompileInputs.cache
 E:\Project\ASP.NET\EShopPoCo\DataServices\obj\Debug\DataServices.dll
 E:\Project\ASP.NET\EShopPoCo\DataServices\obj\Debug\DataServices.pdb
+E:\Project\ASP.NET\EShopPoCo\DataServices\bin\Debug\DataModel.dll.config

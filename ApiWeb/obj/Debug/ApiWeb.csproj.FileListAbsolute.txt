@@ -113,3 +113,4 @@ E:\Project\ASP.NET\EShopPoCo\ApiWeb\obj\Debug\ApiWeb.csprojResolveAssemblyRefere
 E:\Project\ASP.NET\EShopPoCo\ApiWeb\obj\Debug\ApiWeb.csproj.CoreCompileInputs.cache
 E:\Project\ASP.NET\EShopPoCo\ApiWeb\obj\Debug\ApiWeb.dll
 E:\Project\ASP.NET\EShopPoCo\ApiWeb\obj\Debug\ApiWeb.pdb
+E:\Project\ASP.NET\EShopPoCo\ApiWeb\bin\DataModel.dll.config

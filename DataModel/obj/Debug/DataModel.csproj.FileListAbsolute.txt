@@ -4,3 +4,8 @@ E:\Project\ASP.NET\EShopPoCo\DataModel\obj\Debug\DataModel.csprojResolveAssembly
 E:\Project\ASP.NET\EShopPoCo\DataModel\obj\Debug\DataModel.csproj.CoreCompileInputs.cache
 E:\Project\ASP.NET\EShopPoCo\DataModel\obj\Debug\DataModel.dll
 E:\Project\ASP.NET\EShopPoCo\DataModel\obj\Debug\DataModel.pdb
+E:\Project\ASP.NET\EShopPoCo\DataModel\bin\Debug\DataModel.dll.config
+E:\Project\ASP.NET\EShopPoCo\DataModel\bin\Debug\EntityFramework.dll
+E:\Project\ASP.NET\EShopPoCo\DataModel\bin\Debug\EntityFramework.SqlServer.dll
+E:\Project\ASP.NET\EShopPoCo\DataModel\bin\Debug\EntityFramework.xml
+E:\Project\ASP.NET\EShopPoCo\DataModel\bin\Debug\EntityFramework.SqlServer.xml

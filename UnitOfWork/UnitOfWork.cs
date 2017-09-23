@@ -27,7 +27,6 @@ namespace UnitOfWork
         }
         #endregion
 
-
         #region[Menu]
         /*--Khởi tạo Repository SysAutoId--*/
         private IGenericRepository<Menu> _menuRepo;
