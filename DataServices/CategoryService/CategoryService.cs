@@ -113,7 +113,7 @@ namespace DataServices.CategoryService
                       },
                       new SqlParameter("CreateDate", SqlDbType.Date)
                       {
-                          Value = _params.CreateDate 
+                          Value = _params.CreateDate ?? DateTime.Now
                       },
                       new SqlParameter("CreateBy", SqlDbType.Int)
                       {
@@ -121,7 +121,7 @@ namespace DataServices.CategoryService
                       },
                       new SqlParameter("UpdateDate", SqlDbType.Date)
                       {
-                          Value = _params.UpdateDate
+                          Value = _params.UpdateDate == null ? DateTime.Now : _params.UpdateDate
                       },
                       new SqlParameter("UpdateBy", SqlDbType.Int)
                       {
@@ -131,25 +131,25 @@ namespace DataServices.CategoryService
                       {
                           Value = _params.Lock ?? 0
                       },
-                      new SqlParameter("Is_Active", SqlDbType.Bit)
-                      {
-                          Value = _params.Is_Active 
-                      },
+                   new SqlParameter("Is_Active", SqlDbType.Bit)
+                   {
+                       Value = _params.Is_Active == null ? true : _params.Is_Active
+                   },
                     new SqlParameter("Is_HomePage", SqlDbType.Bit)
                     {
-                        Value = _params.Is_HomePage
+                        Value = _params.Is_HomePage == null ? true : _params.Is_HomePage
                     },
                     new SqlParameter("Is_TopMenu", SqlDbType.Bit)
                     {
-                        Value = _params.Is_TopMenu
+                        Value = _params.Is_TopMenu == null ? false : _params.Is_TopMenu
                     },
                     new SqlParameter("Is_BottomMenu", SqlDbType.Bit)
                     {
-                        Value = _params.Is_BottomMenu
+                        Value = _params.Is_BottomMenu == null ? true : _params.Is_TopMenu
                     },
-                    new SqlParameter("Display_Order", SqlDbType.Bit)
+                    new SqlParameter("Display_Order", SqlDbType.Int)
                     {
-                        Value = _params.Display_Order
+                        Value = _params.Display_Order ?? 1
                     }
                       );
             }
@@ -278,7 +278,7 @@ namespace DataServices.CategoryService
                     {
                         Value = _params.Is_BottomMenu
                     },
-                    new SqlParameter("Display_Order", SqlDbType.Bit)
+                    new SqlParameter("Display_Order", SqlDbType.Int)
                     {
                         Value = _params.Display_Order
                     }

@@ -4,12 +4,13 @@ using System;
 
 namespace UnitOfWork
 {
-    public class UnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         #region[System-Context]
         /*--Khởi tạo Context--*/
         private EShopEntities _context;
         #endregion
+        /*============*/
 
         #region[Category]
         /*--Khởi tạo Repository SysAutoId--*/
@@ -43,7 +44,21 @@ namespace UnitOfWork
         }
         #endregion
 
+        #region[Product]
+        private IGenericRepository<Product> _productRepo;
+        public IGenericRepository<Product> ProductRepo
+        {
+            get
+            {
+                if (_productRepo == null)
+                    _productRepo = new GenericRepository<Product>(_context);
+                return _productRepo;
 
+            }
+        }
+        #endregion
+
+        /*============*/
         #region[System-UnitOfWork]
         /*--Khởi tạo UnitOfWork--*/
         public UnitOfWork()
@@ -67,10 +82,16 @@ namespace UnitOfWork
             }
 
         }
+
         public void Dispose()
         {
             _context.Dispose();
             GC.SuppressFinalize(this);
+        }
+
+        public void ExcQuery(string sql, params object[] parameters)
+        {
+            _context.Database.ExecuteSqlCommand(sql, parameters);
         }
         #endregion
     }

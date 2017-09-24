@@ -17,5 +17,9 @@ namespace DataModel
         public bool? Is_TopMenu { get; set; } // Is_TopMenu
         public bool? Is_BottomMenu { get; set; } // Is_BottomMenu
         public int? Display_Order { get; set; } // Display_Order
+        public int? Img_Width { get; set; } // Img_Width
+        public string Img_Unit_Width { get; set; } // Img_Unit_Width (length: 10)
+        public int? Img_Height { get; set; } // Img_Height
+        public string Img_Unit_Height { get; set; } // Img_Unit_Height (length: 10
     }
 }
