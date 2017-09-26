@@ -20,6 +20,12 @@ namespace UnitOfWork
         IGenericRepository<Product> ProductRepo { get; }
         #endregion
 
+        #region[OrderMaster]
+        /*--Khởi tạo interface-OrderMasterRepo--*/
+        IGenericRepository<OrderMaster> OrderMasterRepo { get; }
+
+        #endregion
+
 
 
         /*============*/

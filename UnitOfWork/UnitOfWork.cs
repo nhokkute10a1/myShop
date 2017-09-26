@@ -58,6 +58,20 @@ namespace UnitOfWork
         }
         #endregion
 
+        #region[OrderMaster]
+        private IGenericRepository<OrderMaster> _orderMasterRepo;
+        public IGenericRepository<OrderMaster> OrderMasterRepo
+        {
+            get
+            {
+                if (_orderMasterRepo == null)
+                    _orderMasterRepo = new GenericRepository<OrderMaster>(_context);
+                return _orderMasterRepo;
+            }
+        }
+
+        #endregion
+
         /*============*/
         #region[System-UnitOfWork]
         /*--Khởi tạo UnitOfWork--*/

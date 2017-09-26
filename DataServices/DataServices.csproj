@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="CategoryService\CategoryService.cs" />
     <Compile Include="MenuService\MenuService.cs" />
+    <Compile Include="OrderMasterService\OrderMasterService.cs" />
     <Compile Include="ProductService\ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
