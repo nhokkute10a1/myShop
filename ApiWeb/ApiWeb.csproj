@@ -161,6 +161,7 @@
     <Compile Include="Areas\Admin\Controllers\OrderDetailController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderMasterController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserProfileController.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
     <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
