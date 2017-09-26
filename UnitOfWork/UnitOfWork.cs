@@ -72,6 +72,19 @@ namespace UnitOfWork
 
         #endregion
 
+        #region[OrderDetail]
+        private IGenericRepository<OrderDetail> _orderDetailRepo;
+        public IGenericRepository<OrderDetail> OrderDetailRepo
+        {
+            get
+            {
+                if (_orderDetailRepo == null)
+                    _orderDetailRepo = new GenericRepository<OrderDetail>(_context);
+                return _orderDetailRepo;
+            }
+        }
+        #endregion
+
         /*============*/
         #region[System-UnitOfWork]
         /*--Khởi tạo UnitOfWork--*/

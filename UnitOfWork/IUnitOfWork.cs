@@ -26,7 +26,13 @@ namespace UnitOfWork
 
         #endregion
 
+        #region[OrderDetail]
+        /*--Khởi tạo interface-OrderMasterRepo--*/
+        IGenericRepository<OrderDetail> OrderDetailRepo { get; }
 
+        #endregion
+
+        
 
         /*============*/
         /*--Khởi tạo phương thức--*/

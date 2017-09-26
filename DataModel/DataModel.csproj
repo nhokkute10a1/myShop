@@ -50,6 +50,7 @@
     <Compile Include="BaseModel.cs" />
     <Compile Include="CategoryModel\CategoryModel.cs" />
     <Compile Include="MenuModel\MenuModel.cs" />
+    <Compile Include="OrderDetailModel\OrderDetailModel.cs" />
     <Compile Include="OrderMasterModel\OrderMasterModel.cs" />
     <Compile Include="ProductModel\ProductModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
