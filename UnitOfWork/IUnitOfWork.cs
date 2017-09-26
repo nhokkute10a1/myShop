@@ -32,7 +32,10 @@ namespace UnitOfWork
 
         #endregion
 
-        
+        #region[UserProfile]
+        IGenericRepository<UserProfile> UserProfileRepo { get; }
+        #endregion
+
 
         /*============*/
         /*--Khởi tạo phương thức--*/

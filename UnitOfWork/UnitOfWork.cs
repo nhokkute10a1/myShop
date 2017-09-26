@@ -85,6 +85,19 @@ namespace UnitOfWork
         }
         #endregion
 
+        #region[UserProfile]
+        private IGenericRepository<UserProfile> _userProfileRepo;
+        public IGenericRepository<UserProfile> UserProfileRepo
+        {
+            get
+            {
+                if (_userProfileRepo == null)
+                    _userProfileRepo = new GenericRepository<UserProfile>(_context);
+                return _userProfileRepo;
+            }
+        }
+        #endregion
+
         /*============*/
         #region[System-UnitOfWork]
         /*--Khởi tạo UnitOfWork--*/
