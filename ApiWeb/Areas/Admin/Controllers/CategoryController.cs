@@ -7,10 +7,13 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using LibResponse;
 using Newtonsoft.Json;
+using System.Web.Http.Cors;
 
 namespace ApiWeb.Areas.Admin.Controllers
 {
     [RoutePrefix("api/Category")]
+    /*---Fix(Access-Control-Allow-Origin)----*/
+    [EnableCors("*", "*", "*")]
     public class CategoryController : ApiController
     {
         private readonly CategoryService _cateService = new CategoryService();

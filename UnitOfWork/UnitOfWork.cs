@@ -98,6 +98,32 @@ namespace UnitOfWork
         }
         #endregion
 
+        #region[UserRoles]
+        private IGenericRepository<UserRole> _userRolesRepo;
+        public IGenericRepository<UserRole> UserRolesRepo
+        {
+            get
+            {
+                if (_userRolesRepo == null)
+                    _userRolesRepo = new GenericRepository<UserRole>(_context);
+                return _userRolesRepo;
+            }
+        }
+        #endregion
+
+        #region[Roles]
+        private IGenericRepository<Role> _rolesRepo;
+        public IGenericRepository<Role> RolesRepo
+        {
+            get
+            {
+                if (_rolesRepo == null)
+                    _rolesRepo = new GenericRepository<Role>(_context);
+                return _rolesRepo;
+            }
+        }
+        #endregion
+
         /*============*/
         #region[System-UnitOfWork]
         /*--Khởi tạo UnitOfWork--*/

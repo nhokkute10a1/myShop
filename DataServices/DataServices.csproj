@@ -46,7 +46,9 @@
     <Compile Include="OrderMasterService\OrderMasterService.cs" />
     <Compile Include="ProductService\ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RolesService\RolesService.cs" />
     <Compile Include="UserProfileService\UserProfileService.cs" />
+    <Compile Include="UserRolesService\UserRolesService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">
@@ -71,8 +73,6 @@
     <Folder Include="ContactService\" />
     <Folder Include="PageSettingService\" />
     <Folder Include="PromotionService\" />
-    <Folder Include="RolesModel\" />
-    <Folder Include="UserRolesService\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

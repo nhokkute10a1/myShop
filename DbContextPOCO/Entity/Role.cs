@@ -34,7 +34,6 @@ namespace DbContextPOCO.Entity
         {
             IsActive = false;
             DisplayOrder = 1;
-            UserRoles = new System.Collections.Generic.List<UserRole>();
         }
     }
 

@@ -54,7 +54,9 @@
     <Compile Include="OrderMasterModel\OrderMasterModel.cs" />
     <Compile Include="ProductModel\ProductModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RolesModel\RolesModel.cs" />
     <Compile Include="UserProfileModel\UserProfileModel.cs" />
+    <Compile Include="UserRolesModel\UserRolesModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -65,8 +67,6 @@
     <Folder Include="ContactModel\" />
     <Folder Include="PageSettingModel\" />
     <Folder Include="PromotionModel\" />
-    <Folder Include="RolesModel\" />
-    <Folder Include="UserRolesModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

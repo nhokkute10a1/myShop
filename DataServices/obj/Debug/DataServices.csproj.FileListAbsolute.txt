@@ -6,6 +6,7 @@ E:\Project\ASP.NET\EShopPoCo\DataServices\bin\Debug\LibRepository.dll
 E:\Project\ASP.NET\EShopPoCo\DataServices\bin\Debug\UnitOfWork.dll
 E:\Project\ASP.NET\EShopPoCo\DataServices\bin\Debug\EntityFramework.dll
 E:\Project\ASP.NET\EShopPoCo\DataServices\bin\Debug\DataModel.pdb
+E:\Project\ASP.NET\EShopPoCo\DataServices\bin\Debug\DataModel.dll.config
 E:\Project\ASP.NET\EShopPoCo\DataServices\bin\Debug\DbContextPOCO.pdb
 E:\Project\ASP.NET\EShopPoCo\DataServices\bin\Debug\DbContextPOCO.dll.config
 E:\Project\ASP.NET\EShopPoCo\DataServices\bin\Debug\LibRepository.pdb
@@ -17,4 +18,3 @@ E:\Project\ASP.NET\EShopPoCo\DataServices\obj\Debug\DataServices.csprojResolveAs
 E:\Project\ASP.NET\EShopPoCo\DataServices\obj\Debug\DataServices.csproj.CoreCompileInputs.cache
 E:\Project\ASP.NET\EShopPoCo\DataServices\obj\Debug\DataServices.dll
 E:\Project\ASP.NET\EShopPoCo\DataServices\obj\Debug\DataServices.pdb
-E:\Project\ASP.NET\EShopPoCo\DataServices\bin\Debug\DataModel.dll.config

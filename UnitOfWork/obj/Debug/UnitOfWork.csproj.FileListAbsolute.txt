@@ -1,5 +1,3 @@
-E:\Project\ASP.NET\EShopPoCo\UnitOfWork\obj\Debug\UnitOfWork.csprojResolveAssemblyReference.cache
-E:\Project\ASP.NET\EShopPoCo\UnitOfWork\obj\Debug\UnitOfWork.csproj.CoreCompileInputs.cache
 E:\Project\ASP.NET\EShopPoCo\UnitOfWork\bin\Debug\UnitOfWork.dll.config
 E:\Project\ASP.NET\EShopPoCo\UnitOfWork\bin\Debug\UnitOfWork.dll
 E:\Project\ASP.NET\EShopPoCo\UnitOfWork\bin\Debug\UnitOfWork.pdb
@@ -15,5 +13,7 @@ E:\Project\ASP.NET\EShopPoCo\UnitOfWork\bin\Debug\LibRepository.dll.config
 E:\Project\ASP.NET\EShopPoCo\UnitOfWork\bin\Debug\LibResponse.pdb
 E:\Project\ASP.NET\EShopPoCo\UnitOfWork\bin\Debug\EntityFramework.xml
 E:\Project\ASP.NET\EShopPoCo\UnitOfWork\bin\Debug\EntityFramework.SqlServer.xml
+E:\Project\ASP.NET\EShopPoCo\UnitOfWork\obj\Debug\UnitOfWork.csprojResolveAssemblyReference.cache
+E:\Project\ASP.NET\EShopPoCo\UnitOfWork\obj\Debug\UnitOfWork.csproj.CoreCompileInputs.cache
 E:\Project\ASP.NET\EShopPoCo\UnitOfWork\obj\Debug\UnitOfWork.dll
 E:\Project\ASP.NET\EShopPoCo\UnitOfWork\obj\Debug\UnitOfWork.pdb

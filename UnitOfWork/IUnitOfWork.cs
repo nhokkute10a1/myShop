@@ -36,6 +36,14 @@ namespace UnitOfWork
         IGenericRepository<UserProfile> UserProfileRepo { get; }
         #endregion
 
+        #region[UserRole]
+        IGenericRepository<UserRole> UserRolesRepo { get; }
+        #endregion
+
+        #region[Role]
+        IGenericRepository<Role> RolesRepo { get; }
+        #endregion
+
 
         /*============*/
         /*--Khởi tạo phương thức--*/
