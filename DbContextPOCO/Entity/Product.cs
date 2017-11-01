@@ -34,7 +34,7 @@ namespace DbContextPOCO.Entity
         public string ProductDescriptionEn { get; set; } // Product_DescriptionEN
         public double? ProductPrice { get; set; } // Product_Price
         public double? ProductDiscount { get; set; } // Product_Discount
-        public string ProductImg { get; set; } // Product_Img (length: 255)
+        public string ProductImg { get; set; } // Product_Img
         public int? ImgWidth { get; set; } // Img_Width
         public string ImgUnitWidth { get; set; } // Img_Unit_Width (length: 10)
         public int? ImgHeight { get; set; } // Img_Height

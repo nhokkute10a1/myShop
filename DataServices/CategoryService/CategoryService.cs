@@ -20,7 +20,7 @@ namespace DataServices.CategoryService
         }
 
         /*==GetAllByParentId -  Store ==*/
-        public List<CategoryModel>GetAllByParentId(CategoryModel _params)
+        public CategoryModel GetAllByParentId(CategoryModel _params)
         {
             var data = _uow.CategoryRepo.SQLQuery<CategoryModel>("sp_Category_GetAllByIdParent "
                 + "@Category_Parent_ID",
@@ -29,7 +29,19 @@ namespace DataServices.CategoryService
                     Value = _params.Category_Parent_ID ?? 0
                 }
                     
-                ).ToList();
+                ).FirstOrDefault();
+            return data;
+        }
+
+        /*==GetAllById -  Store ==*/
+        public CategoryModel GetById(CategoryModel _params)
+        {
+            var data = _uow.CategoryRepo.SQLQuery<CategoryModel>("sp_Category_GetAllById "
+                + "@Category_ID",
+                new SqlParameter("Category_ID", SqlDbType.Int)
+                {
+                    Value = _params.Category_ID
+                }).FirstOrDefault();
             return data;
         }
 
@@ -252,7 +264,7 @@ namespace DataServices.CategoryService
                       },
                       new SqlParameter("UpdateDate", SqlDbType.Date)
                       {
-                          Value = _params.UpdateDate
+                          Value = _params.UpdateDate == null ? DateTime.Now : _params.UpdateDate
                       },
                       new SqlParameter("UpdateBy", SqlDbType.Int)
                       {

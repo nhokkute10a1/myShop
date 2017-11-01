@@ -44,7 +44,7 @@ namespace DbContextPOCO.Entity
             Property(x => x.ProductDescriptionEn).HasColumnName(@"Product_DescriptionEN").HasColumnType("nvarchar(max)").IsOptional();
             Property(x => x.ProductPrice).HasColumnName(@"Product_Price").HasColumnType("float").IsOptional();
             Property(x => x.ProductDiscount).HasColumnName(@"Product_Discount").HasColumnType("float").IsOptional();
-            Property(x => x.ProductImg).HasColumnName(@"Product_Img").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(255);
+            Property(x => x.ProductImg).HasColumnName(@"Product_Img").HasColumnType("varchar(max)").IsOptional().IsUnicode(false);
             Property(x => x.ImgWidth).HasColumnName(@"Img_Width").HasColumnType("int").IsOptional();
             Property(x => x.ImgUnitWidth).HasColumnName(@"Img_Unit_Width").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
             Property(x => x.ImgHeight).HasColumnName(@"Img_Height").HasColumnType("int").IsOptional();

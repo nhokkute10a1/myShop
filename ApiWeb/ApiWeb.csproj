@@ -52,6 +52,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="FroalaEditorSDK">
+      <HintPath>..\LibE\FroalaEditorSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="Magick.NET-Q16-AnyCPU">
+      <HintPath>..\LibE\Magick.NET-Q16-AnyCPU.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNetCore.Http.Abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNetCore.Http.Abstractions.2.0.0\lib\netstandard2.0\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
     </Reference>
@@ -237,6 +243,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\FroalaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -282,7 +289,42 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="UploadData\YouNameSystem\admin_233f959f-32b1-492f-8140-9f9e04706023.jpg" />
+    <Content Include="UploadData\YouNameSystem\admin_2b57c772-91eb-49ad-b04a-a423455e3eaf.jpg" />
+    <Content Include="UploadData\YouNameSystem\admin_34dd5aa7-4905-4fa3-ad57-24ee6f6fa4cb.jpg" />
+    <Content Include="UploadData\YouNameSystem\admin_45421841-4fa5-40ba-bea8-2f0675068d77.jpg" />
+    <Content Include="UploadData\YouNameSystem\admin_4a175bf5-e679-4cb2-8f15-187216a74386.jpg" />
+    <Content Include="UploadData\YouNameSystem\admin_5fb6c40f-e64c-47f6-988f-5667f1656d15.jpg" />
+    <Content Include="UploadData\YouNameSystem\admin_71f74352-aa42-4acb-9122-1fc02f1463c1.jpg" />
+    <Content Include="UploadData\YouNameSystem\admin_7ae72ead-13a6-4d0d-bd95-db7c3aec9235.jpg" />
+    <Content Include="UploadData\YouNameSystem\admin_7f823288-e528-4481-b028-539878fde0a8.jpg" />
+    <Content Include="UploadData\YouNameSystem\admin_8680d844-d57b-4462-bd1f-00b39c045c01.jpg" />
+    <Content Include="UploadData\YouNameSystem\admin_874499cf-bbb4-47da-b098-153d2f2d1139.jpg" />
+    <Content Include="UploadData\YouNameSystem\admin_884c09bd-4fab-4c28-a909-f35e12d1290b.jpg" />
+    <Content Include="UploadData\YouNameSystem\admin_9cc14301-cf83-4aec-a3a6-7c6a85d30fea.jpg" />
+    <Content Include="UploadData\YouNameSystem\admin_a0f3aead-04e5-4254-a858-19458c03a8c9.jpg" />
+    <Content Include="UploadData\YouNameSystem\admin_ba6c1195-6a54-416d-b7ce-f5b3e18b8ddf.jpg" />
+    <Content Include="UploadData\YouNameSystem\admin_bb0ec7aa-ac6c-419d-9e3d-70a997eeac9f.jpg" />
+    <Content Include="UploadData\YouNameSystem\admin_c3a64271-be2d-4b6a-83d0-c7d0e83d170d.jpg" />
+    <Content Include="UploadData\YouNameSystem\admin_cedc8c4b-d99a-466c-a224-fb326b07f538.jpg" />
+    <Content Include="UploadData\YouNameSystem\admin_df0aa846-222f-4d44-b14f-d5b15ffe0455.jpg" />
+    <Content Include="UploadData\YouNameSystem\admin_e2ddc4e0-baf1-4bf2-89c4-c71268c25e33.jpg" />
+    <Content Include="UploadData\YouNameSystem\admin_ea307d2e-891e-407f-946f-c2065b7b64ca.jpg" />
+    <Content Include="UploadData\YouNameSystem\admin_f7150200-0c20-41b3-a8c6-95af24df23a9.jpg" />
+    <Content Include="UploadData\YouNameSystem\admin_fac9e38b-590c-42cd-bc9d-179f8a81818d.jpg" />
+    <Content Include="UploadData\YouNameSystem\admin_fe49ed15-4e80-423a-b2fc-a7fd49185667.jpg" />
+    <Content Include="UploadData\YouNameSystem\kaka_aba8aecc-be9e-489f-8dcd-5ac6103f1398.jpg" />
+    <Content Include="Upload\File\Config.txt" />
+    <Content Include="Upload\Image\146a87e41dc0582b7b33d264db7ff1705600b587.png" />
+    <Content Include="Upload\Image\1bb6fef388fd5d0dbfefabc34c9c5f5be6aedb0b.png" />
+    <Content Include="Upload\Image\1ef46ee2f67a7d4896f90eef3819eb1c0cddcf1e.png" />
+    <Content Include="Upload\Image\30dc043d1e0f781c3b5594ed04e1ec6b54b3da96.png" />
+    <Content Include="Upload\Image\3af991fe67afa915cd36c53313639dae33bb0c8b.png" />
+    <Content Include="Upload\Image\884d00905e80b1e159f486ac8519e3121e5a09db.png" />
+    <Content Include="Upload\Image\ac45e1aab2ba1997a81745d3e93c732577f4b9a1.png" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -302,6 +344,8 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Models\" />
+    <Folder Include="Upload\Video\" />
+    <Folder Include="Views\UploadImage\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -317,6 +361,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\LibCommon.csproj">
+      <Project>{7521ce4d-cd6f-4ef4-8ba2-dc14d6e770c0}</Project>
+      <Name>LibCommon</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataModel\DataModel.csproj">
       <Project>{64d881e4-b7c8-4bc6-afd0-f7cbf7879b02}</Project>
       <Name>DataModel</Name>
@@ -344,7 +392,16 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>64657</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:64657/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>

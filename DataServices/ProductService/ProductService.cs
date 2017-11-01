@@ -12,7 +12,25 @@ namespace DataServices.ProductService
     public class ProductService
     {
         UnitOfWork.UnitOfWork _ouw = new UnitOfWork.UnitOfWork();
+        /*===Get All Product ===*/
+        public List<ProductModel> GetAll()
+        {
+            var data = _ouw.ProductRepo
+                .SQLQuery<ProductModel>("sp_Product_GetAll").ToList();
+            return data;
+        }
 
+        /*===Get All Product By Id ===*/
+        public ProductModel GetById(ProductModel _params)
+        {
+            var data = _ouw.ProductRepo
+                .SQLQuery<ProductModel>("sp_Product_GetAllById " + "@Product_ID",
+                new SqlParameter("Product_ID", SqlDbType.Int)
+                {
+                    Value = _params.@Product_ID
+                }).FirstOrDefault();
+            return data;
+        }
         /*==Insert -  Store ==*/
         public void Insert(ProductModel _params)
         {
@@ -43,11 +61,11 @@ namespace DataServices.ProductService
                   "@Keyword_Content," +
                   "@Keyword_Description," +
                   "@CreateDate," +
-                  "@CreateBy,"+
+                  "@CreateBy," +
                   "@UpdateDate," +
                   "@UpdateBy," +
                   "@Product_View," +
-                  "@Lock,"+
+                  "@Lock," +
                   "@Is_Active," +
                   "@Is_HomePage," +
                   "@Is_TopMenu," +
@@ -56,7 +74,7 @@ namespace DataServices.ProductService
                   ,
                   new SqlParameter("Product_Code", SqlDbType.VarChar, (50))
                   {
-                      Value = _params.Product_Code ?? DBNull.Value.ToString()
+                      Value = _params.Product_Code 
                   },
                   new SqlParameter("Category_Parent_ID", SqlDbType.Int)
                   {
@@ -64,7 +82,7 @@ namespace DataServices.ProductService
                   },
                   new SqlParameter("Currency_ID", SqlDbType.Int)
                   {
-                      Value = _params.Currency_ID
+                      Value = _params.Currency_ID ?? 1
                   },
                   new SqlParameter("Product_NameVN", SqlDbType.NVarChar, (50))
                   {
@@ -84,7 +102,7 @@ namespace DataServices.ProductService
                   },
                   new SqlParameter("Product_SearchVN", SqlDbType.VarChar, (50))
                   {
-                      Value = _params.Product_SearchVN ?? DBNull.Value.ToString()
+                      Value = _params.Product_SearchVN 
                   },
                   new SqlParameter("Product_SearchEN", SqlDbType.VarChar, (50))
                   {
@@ -108,13 +126,13 @@ namespace DataServices.ProductService
                   },
                   new SqlParameter("Product_Price", SqlDbType.Float)
                   {
-                      Value = _params.Product_Price
+                      Value = _params.Product_Price??0
                   },
                   new SqlParameter("Product_Discount", SqlDbType.Float)
                   {
-                      Value = _params.Product_Discount
+                      Value = _params.Product_Discount??0
                   },
-                  new SqlParameter("Product_Img", SqlDbType.VarChar, (50))
+                  new SqlParameter("Product_Img", SqlDbType.VarChar)
                   {
                       Value = _params.Product_Img ?? DBNull.Value.ToString()
                   },
@@ -156,7 +174,7 @@ namespace DataServices.ProductService
                   },
                   new SqlParameter("UpdateDate", SqlDbType.Date)
                   {
-                      Value = _params.UpdateDate == null?  DateTime.Now : _params.UpdateDate
+                      Value = _params.UpdateDate == null ? DateTime.Now : _params.UpdateDate
                   },
                   new SqlParameter("UpdateBy", SqlDbType.Int)
                   {
@@ -172,11 +190,11 @@ namespace DataServices.ProductService
                   },
                    new SqlParameter("Is_Active", SqlDbType.Bit)
                    {
-                       Value = _params.Is_Active == null? true : _params.Is_Active
+                       Value = _params.Is_Active == null ? true : _params.Is_Active
                    },
                     new SqlParameter("Is_HomePage", SqlDbType.Bit)
                     {
-                        Value = _params.Is_HomePage ==null? true : _params.Is_HomePage
+                        Value = _params.Is_HomePage == null ? true : _params.Is_HomePage
                     },
                     new SqlParameter("Is_TopMenu", SqlDbType.Bit)
                     {
@@ -205,7 +223,7 @@ namespace DataServices.ProductService
             try
             {
                 _ouw.ProductRepo.ExcQuery("exec sp_Product_Update " +
-                   "@Product_ID,"+
+                   "@Product_ID," +
                   "@Product_Code," +
                   "@Category_Parent_ID," +
                   "@Currency_ID," +
@@ -243,11 +261,11 @@ namespace DataServices.ProductService
                   ,
                   new SqlParameter("Product_ID", SqlDbType.Int)
                   {
-                      Value = _params.Product_ID 
+                      Value = _params.Product_ID
                   },
                   new SqlParameter("Product_Code", SqlDbType.VarChar, (50))
                   {
-                      Value = _params.Product_Code ?? DBNull.Value.ToString()
+                      Value = _params.Product_Code 
                   },
                   new SqlParameter("Category_Parent_ID", SqlDbType.Int)
                   {
@@ -255,7 +273,7 @@ namespace DataServices.ProductService
                   },
                   new SqlParameter("Currency_ID", SqlDbType.Int)
                   {
-                      Value = _params.Currency_ID
+                      Value = _params.Currency_ID ?? 1
                   },
                   new SqlParameter("Product_NameVN", SqlDbType.NVarChar, (50))
                   {
@@ -275,7 +293,7 @@ namespace DataServices.ProductService
                   },
                   new SqlParameter("Product_SearchVN", SqlDbType.VarChar, (50))
                   {
-                      Value = _params.Product_SearchVN ?? DBNull.Value.ToString()
+                      Value = _params.Product_SearchVN
                   },
                   new SqlParameter("Product_SearchEN", SqlDbType.VarChar, (50))
                   {
@@ -299,13 +317,13 @@ namespace DataServices.ProductService
                   },
                   new SqlParameter("Product_Price", SqlDbType.Float)
                   {
-                      Value = _params.Product_Price
+                      Value = _params.Product_Price ?? 0
                   },
                   new SqlParameter("Product_Discount", SqlDbType.Float)
                   {
-                      Value = _params.Product_Discount
+                      Value = _params.Product_Discount ??0
                   },
-                  new SqlParameter("Product_Img", SqlDbType.VarChar, (50))
+                  new SqlParameter("Product_Img", SqlDbType.VarChar)
                   {
                       Value = _params.Product_Img ?? DBNull.Value.ToString()
                   },

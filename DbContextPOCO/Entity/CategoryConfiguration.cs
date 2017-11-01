@@ -36,8 +36,8 @@ namespace DbContextPOCO.Entity
             Property(x => x.CategoryRewrite).HasColumnName(@"Category_Rewrite").HasColumnType("nvarchar").IsRequired().HasMaxLength(255);
             Property(x => x.CategorySearchVn).HasColumnName(@"Category_SearchVN").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
             Property(x => x.CategorySearchEn).HasColumnName(@"Category_SearchEN").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
-            Property(x => x.CategoryIcon).HasColumnName(@"Category_Icon").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(255);
-            Property(x => x.CategoryImg).HasColumnName(@"Category_Img").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(255);
+            Property(x => x.CategoryIcon).HasColumnName(@"Category_Icon").HasColumnType("varchar(max)").IsOptional().IsUnicode(false);
+            Property(x => x.CategoryImg).HasColumnName(@"Category_Img").HasColumnType("varchar(max)").IsOptional().IsUnicode(false);
             Property(x => x.KeywordTitile).HasColumnName(@"Keyword_Titile").HasColumnType("nvarchar").IsOptional().HasMaxLength(50);
             Property(x => x.KeywordContent).HasColumnName(@"Keyword_Content").HasColumnType("nvarchar(max)").IsOptional();
             Property(x => x.KeywordDescription).HasColumnName(@"Keyword_Description").HasColumnType("nvarchar(max)").IsOptional();

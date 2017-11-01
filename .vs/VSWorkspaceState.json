@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\ApiWeb",
+    "\\ApiWeb\\Areas",
+    "\\ApiWeb\\Areas\\Admin",
+    "\\ApiWeb\\Areas\\Admin\\Controllers"
+  ],
+  "SelectedNode": "\\ApiWeb\\Areas\\Admin\\Controllers\\CategoryController.cs",
+  "PreviewInSolutionExplorer": false
+}

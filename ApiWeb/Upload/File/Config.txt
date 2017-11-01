@@ -1,0 +1,31 @@
+jQuery(() => {
+            jQuery('#froalaEditor').froalaEditor({
+                height: "250px",
+                // Set the file upload URL.
+                fileUploadURL: '/FroalaApi/api/UploadFileAsync',
+                // Set the file upload URL.
+                imageUploadURL: "/FroalaApi/api/UploadImagesAsync",
+                // Set the load images request URL.
+                imageManagerLoadURL: "/FroalaApi/api/LoadImagesAsync",
+                // Set page size.
+                imageManagerPageSize: 20,
+                // Set a scroll offset (value in pixels).
+                imageManagerScrollOffset: 10,
+                // Set the load images request type.
+                imageManagerLoadMethod: "GET",
+                // Additional load params.
+                imageManagerLoadParams: { user_id: 4219762 },
+                // Set the delete image request URL.
+                imageManagerDeleteURL: "/FroalaApi/api/DeleteImagesAsync",
+                // Set the delete image request type.
+                imageManagerDeleteMethod: "DELETE",
+                // Additional delete params.
+                imageManagerDeleteParams: { param: 'value' },
+
+                // Set the video upload URL.
+                videoUploadURL: '/FroalaApi/api/UploadVideoAsync',
+                videoUploadParams: {
+                    id: 'my_editor'
+                }
+            });
+        });

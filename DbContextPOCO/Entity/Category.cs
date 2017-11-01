@@ -26,8 +26,8 @@ namespace DbContextPOCO.Entity
         public string CategoryRewrite { get; set; } // Category_Rewrite (length: 255)
         public string CategorySearchVn { get; set; } // Category_SearchVN (length: 50)
         public string CategorySearchEn { get; set; } // Category_SearchEN (length: 50)
-        public string CategoryIcon { get; set; } // Category_Icon (length: 255)
-        public string CategoryImg { get; set; } // Category_Img (length: 255)
+        public string CategoryIcon { get; set; } // Category_Icon
+        public string CategoryImg { get; set; } // Category_Img
         public string KeywordTitile { get; set; } // Keyword_Titile (length: 50)
         public string KeywordContent { get; set; } // Keyword_Content
         public string KeywordDescription { get; set; } // Keyword_Description

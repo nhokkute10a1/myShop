@@ -27,7 +27,8 @@ namespace DataModel.ProductModel
         public string Product_Img { get; set; } // Product_Img (length: 255)
       
         public int? Product_View { get; set; } // Product_View
-
+        public string Category_NameVN { get; set; }
+        public string ImageBase64 { get; set; }
         public ProductModel()
         {
             CreateDate = DateTime.Now;

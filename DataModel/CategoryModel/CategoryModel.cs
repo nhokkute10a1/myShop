@@ -14,6 +14,7 @@ namespace DataModel.CategoryModel
         public string Category_SearchEN { get; set; } // Category_SearchEN (length: 50)
         public string Category_Icon { get; set; } // Category_Icon (length: 255)
         public string Category_Img { get; set; } // Category_Img (length: 255)
+        public string ImageBase64 { get; set; }
 
         public CategoryModel()
         {

@@ -55,6 +55,7 @@
     <Compile Include="ProductModel\ProductModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RolesModel\RolesModel.cs" />
+    <Compile Include="UploadImage\AvatarProfile.cs" />
     <Compile Include="UserProfileModel\UserProfileModel.cs" />
     <Compile Include="UserRolesModel\UserRolesModel.cs" />
   </ItemGroup>
