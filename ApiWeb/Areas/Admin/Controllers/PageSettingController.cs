@@ -1,29 +1,28 @@
-﻿using DataModel.ProductModel;
-using DataServices.ProductService;
+﻿using DataServices.PageSettingService;
+using LibCommon;
+using System;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
+using System.Web.Configuration;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using LibResponse;
 using System.Net;
-using System;
 using Newtonsoft.Json;
-using System.Web.Http.Cors;
-using System.Web.Configuration;
-using System.IO;
-using System.Web;
-using System.Drawing;
-using LibCommon;
-using System.Drawing.Imaging;
+using DataModel.PageSettingModel;
 
 namespace ApiWeb.Areas.Admin.Controllers
 {
-    [RoutePrefix("api/Product")]
+    [RoutePrefix("api/PageSetting")]
     /*---Fix(Access-Control-Allow-Origin)----*/
     [EnableCors("*", "*", "*")]
-    public class ProductController : ApiController
+    public class PageSettingController : ApiController
     {
-        private readonly ProductService _productService = new ProductService();
-
+        private readonly PageSettingService _pageSettingService = new PageSettingService();
         #region[Define-Width-Hight]
         private string _Path = WebConfigurationManager.AppSettings["UploadFolder"];
         private int _Width = int.Parse(WebConfigurationManager.AppSettings["Width"]);
@@ -32,16 +31,16 @@ namespace ApiWeb.Areas.Admin.Controllers
         private int _HeightWeb = int.Parse(WebConfigurationManager.AppSettings["HeightWeb"]);
         #endregion
 
-        /*===Lấy toàn bộ danh sách sản phẩm===*/
-        [Route("GetAllProductAsync")]
+        /*==Get All==*/
+        [Route("GetAllAsync")]
         [HttpPost]
-        public async Task<HttpResponseMessage> GetAllProductAsync()
+        public async Task<HttpResponseMessage> GetAllAsync()
         {
             var Res = Request.CreateResponse();
             var Result = new Res();
             try
             {
-                var data = await Task.Run(() => _productService.GetAll());
+                var data = await Task.Run(() => _pageSettingService.GetAll());
                 if (data != null)
                 {
                     Result.Data = data;
@@ -58,6 +57,7 @@ namespace ApiWeb.Areas.Admin.Controllers
                 }
                 Res.Content = new StringContent(JsonConvert.SerializeObject(Result));
                 return Res;
+
             }
             catch (Exception ex)
             {
@@ -65,16 +65,16 @@ namespace ApiWeb.Areas.Admin.Controllers
             }
         }
 
-        /*===Lấy toàn bộ danh sách sản phẩm theo id===*/
+        /*==Get by ID==*/
         [Route("GetAllByIdAsync")]
         [HttpPost]
-        public async Task<HttpResponseMessage> GetAllByIdAsync(ProductModel _param)
+        public async Task<HttpResponseMessage> GetAllByIdAsync(PageSettingModel _params)
         {
             var Res = Request.CreateResponse();
             var Result = new Res();
             try
             {
-                var data = await Task.Run(() => _productService.GetById(_param));
+                var data = await Task.Run(() => _pageSettingService.GetById(_params));
                 if (data != null)
                 {
                     Result.Data = data;
@@ -91,6 +91,7 @@ namespace ApiWeb.Areas.Admin.Controllers
                 }
                 Res.Content = new StringContent(JsonConvert.SerializeObject(Result));
                 return Res;
+
             }
             catch (Exception ex)
             {
@@ -98,68 +99,62 @@ namespace ApiWeb.Areas.Admin.Controllers
             }
         }
 
-        /*===Thêm mới Product===*/
+        /*==Insert==*/
         [Route("CreateAsync")]
         [HttpPost]
-        public async Task<HttpResponseMessage> CreateAsync(ProductModel _params)
+        public async Task<HttpResponseMessage> CreateAsync(PageSettingModel _params)
         {
             var Res = Request.CreateResponse();
             var StatusUpload = false;
             var MessageUpload = string.Empty;
             var OutputFile = string.Empty;
             var Result = new Res();
+
             try
             {
                 if (_params != null)
                 {
-                    if (string.IsNullOrEmpty(_params.Product_Code))
+                    if (string.IsNullOrEmpty(_params.PageSetting_NameVN))
                     {
                         Result.Status = false;
-                        Result.Message = "Mã sản phẩm không được trống " + _params.Product_Code;
+                        Result.Message = "Tiêu đề tiếng việt không được trống " + _params.PageSetting_NameVN;
                         Result.StatusCode = HttpStatusCode.BadRequest;
                     }
-                    else if (string.IsNullOrEmpty(_params.Product_NameVN))
+                    else if (string.IsNullOrEmpty(_params.PageSetting_NameEN))
                     {
                         Result.Status = false;
-                        Result.Message = "Tên sản phẩm không được trống " + _params.Product_NameVN;
+                        Result.Message = "Tên tiêu đề tiếng anh không được trống " + _params.PageSetting_NameEN;
                         Result.StatusCode = HttpStatusCode.BadRequest;
                     }
-                    else if (_params.Category_Parent_ID == 0 || _params.Category_Parent_ID <= -1)
+                    else if (string.IsNullOrEmpty(_params.PageSetting_Rewrite))
                     {
                         Result.Status = false;
-                        Result.Message = "Danh mục không được trống " + _params.Category_Parent_ID;
-                        Result.StatusCode = HttpStatusCode.BadRequest;
-                    }
-                    else if (string.IsNullOrEmpty(_params.Product_SearchVN))
-                    {
-                        Result.Status = false;
-                        Result.Message = "Tìm kiếm tiếng việt không được trống " + _params.Product_SearchVN;
+                        Result.Message = "Đường dẫn thân thiện không được trống " + _params.PageSetting_Rewrite;
                         Result.StatusCode = HttpStatusCode.BadRequest;
                     }
                     else
                     {
-
                         if (!string.IsNullOrEmpty(_params.ImageBase64))
                         {
                             UploadImageWithOutResize("YouNameSystem", _params.ImageBase64, "admin", out StatusUpload, out MessageUpload, out OutputFile);
                             if (StatusUpload)
                             {
-                                _params.Product_Img = OutputFile;//Đường dẫn ảnh khi đã được xử lý thành ảnh  
-                                await Task.Run(() => _productService.Insert(_params));
+                                _params.PageSetting_Img = OutputFile;
+                                await Task.Run(() => _pageSettingService.Insert(_params));
                                 Result.Status = true;
                                 Result.Message = "Thêm mới thành công có ảnh";
                                 Result.StatusCode = HttpStatusCode.OK;
-
                             }
                         }
                         else
                         {
-                            await Task.Run(() => _productService.Insert(_params));
+                            await Task.Run(() => _pageSettingService.Insert(_params));
                             Result.Status = true;
                             Result.Message = "Thêm mới thành công";
                             Result.StatusCode = HttpStatusCode.OK;
-
                         }
+
+
                     }
                 }
                 else
@@ -180,14 +175,14 @@ namespace ApiWeb.Areas.Admin.Controllers
             }
         }
 
-        /*===Cập Nhập Product===*/
+        /*===Update===*/
         [Route("UpdateAsync")]
         [HttpPost]
-        public async Task<HttpResponseMessage> UpdateAsync(ProductModel _params)
+        public async Task<HttpResponseMessage> UpdateAsync(PageSettingModel _params)
         {
             var Res = Request.CreateResponse();
             var Result = new Res();
-            var query = _productService.GetById(_params);
+            var query = _pageSettingService.GetById(_params);
             var StatusUpload = false;
             var MessageUpload = string.Empty;
             var OutputFile = string.Empty;
@@ -196,36 +191,30 @@ namespace ApiWeb.Areas.Admin.Controllers
 
                 if (_params != null)
                 {
-                    if (string.IsNullOrEmpty(_params.Product_Code))
+                    if (string.IsNullOrEmpty(_params.PageSetting_NameVN))
                     {
                         Result.Status = false;
-                        Result.Message = "Mã sản phẩm không được trống " + _params.Product_Code;
+                        Result.Message = "Tiêu đề tiếng việt không được trống " + _params.PageSetting_NameVN;
                         Result.StatusCode = HttpStatusCode.BadRequest;
                     }
-                    else if (string.IsNullOrEmpty(_params.Product_NameVN))
+                    else if (string.IsNullOrEmpty(_params.PageSetting_NameEN))
                     {
                         Result.Status = false;
-                        Result.Message = "Tên sản phẩm không được trống " + _params.Product_NameVN;
+                        Result.Message = "Tên tiêu đề tiếng anh không được trống " + _params.PageSetting_NameEN;
                         Result.StatusCode = HttpStatusCode.BadRequest;
                     }
-                    else if (_params.Category_Parent_ID == 0 || _params.Category_Parent_ID <= -1)
+                    else if (string.IsNullOrEmpty(_params.PageSetting_Rewrite))
                     {
                         Result.Status = false;
-                        Result.Message = "Danh mục không được trống " + _params.Category_Parent_ID;
-                        Result.StatusCode = HttpStatusCode.BadRequest;
-                    }
-                    else if (string.IsNullOrEmpty(_params.Product_SearchVN))
-                    {
-                        Result.Status = false;
-                        Result.Message = "Tìm kiếm tiếng việt không được trống " + _params.Product_SearchVN;
+                        Result.Message = "Đường dẫn thân thiện không được trống " + _params.PageSetting_Rewrite;
                         Result.StatusCode = HttpStatusCode.BadRequest;
                     }
                     else
                     {
                         if (string.IsNullOrEmpty(_params.ImageBase64))
                         {
-                            _params.Product_Img = query.Product_Img;
-                            await Task.Run(() => _productService.Update(_params));
+                            _params.PageSetting_Img = query.PageSetting_Img;
+                            await Task.Run(() => _pageSettingService.Update(_params));
                             Result.Status = true;
                             Result.Message = "Cập nhập thành công";
                             Result.StatusCode = HttpStatusCode.OK;
@@ -236,8 +225,8 @@ namespace ApiWeb.Areas.Admin.Controllers
                             UploadImageWithOutResize("YouNameSystem", _params.ImageBase64, "admin", out StatusUpload, out MessageUpload, out OutputFile);
                             if (StatusUpload)
                             {
-                                _params.Product_Img = OutputFile;//Đường dẫn ảnh khi đã được xử lý thành ảnh  
-                                await Task.Run(() => _productService.Update(_params));
+                                _params.PageSetting_Img = OutputFile;//Đường dẫn ảnh khi đã được xử lý thành ảnh  
+                                await Task.Run(() => _pageSettingService.Update(_params));
                                 Result.Status = true;
                                 Result.Message = "Cập nhập thành công có ảnh";
                                 Result.StatusCode = HttpStatusCode.OK;
@@ -264,10 +253,10 @@ namespace ApiWeb.Areas.Admin.Controllers
             }
         }
 
-        /*===Xóa Product===*/
+        /*===Delete===*/
         [Route("DeleteAsync")]
         [HttpPost]
-        public async Task<HttpResponseMessage> DeleteAsync(ProductModel _param)
+        public async Task<HttpResponseMessage> DeleteAsync(PageSettingModel _param)
         {
             var Res = Request.CreateResponse();
             var Result = new Res();
@@ -275,7 +264,7 @@ namespace ApiWeb.Areas.Admin.Controllers
             {
                 if (_param != null)
                 {
-                    await Task.Run(() => _productService.Delete(_param));
+                    await Task.Run(() => _pageSettingService.Delete(_param));
                     Result.Status = true;
                     Result.Message = "Xóa thành công";
                     Result.StatusCode = HttpStatusCode.OK;
@@ -300,6 +289,7 @@ namespace ApiWeb.Areas.Admin.Controllers
 
         /*===Upload ảnh ===*/
         #region[Upload-Image]
+
         private void UploadImage(string FolderName, string ImageBase64String, string UserName, out bool StatusUpload, out string MessageUpload, out string OutputFile)
         {
             MessageUpload = string.Empty;
@@ -340,6 +330,7 @@ namespace ApiWeb.Areas.Admin.Controllers
                 }
             }
         }
+
         private void UploadImageWithOutResize(string FolderName, string ImageBase64String, string UserName, out bool StatusUpload, out string MessageUpload, out string OutputFile)
         {
             MessageUpload = string.Empty;
@@ -380,6 +371,7 @@ namespace ApiWeb.Areas.Admin.Controllers
                 }
             }
         }
+
         #endregion
     }
 }

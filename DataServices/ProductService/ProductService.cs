@@ -11,7 +11,7 @@ namespace DataServices.ProductService
 {
     public class ProductService
     {
-        UnitOfWork.UnitOfWork _ouw = new UnitOfWork.UnitOfWork();
+        private UnitOfWork.UnitOfWork _ouw = new UnitOfWork.UnitOfWork();
         /*===Get All Product ===*/
         public List<ProductModel> GetAll()
         {
@@ -27,7 +27,7 @@ namespace DataServices.ProductService
                 .SQLQuery<ProductModel>("sp_Product_GetAllById " + "@Product_ID",
                 new SqlParameter("Product_ID", SqlDbType.Int)
                 {
-                    Value = _params.@Product_ID
+                    Value = _params.Product_ID
                 }).FirstOrDefault();
             return data;
         }

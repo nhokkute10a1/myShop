@@ -39,7 +39,7 @@ namespace DataServices.OrderDetailService
                   },
                   new SqlParameter("Amout", SqlDbType.Float)
                   {
-                      Value = _params.Amout ==null ?0 : _params.Amout
+                      Value = _params.Amout 
                   },
                   new SqlParameter("OrderDetail_Date", SqlDbType.Date)
                   {

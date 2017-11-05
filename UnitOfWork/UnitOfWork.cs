@@ -13,7 +13,7 @@ namespace UnitOfWork
         /*============*/
 
         #region[Category]
-        /*--Khởi tạo Repository SysAutoId--*/
+        /*--Khởi tạo Repository Category--*/
         private IGenericRepository<Category> _categoryRepo;
         public IGenericRepository<Category> CategoryRepo
         {
@@ -24,6 +24,20 @@ namespace UnitOfWork
                     _categoryRepo = new GenericRepository<Category>(_context);
 
                 return _categoryRepo;
+            }
+        }
+        #endregion
+
+        #region[PageSetting]
+        /*--Khởi tạo respository PageSetting--*/
+        private IGenericRepository<PageSetting> _pageSettingRepo;
+        public IGenericRepository<PageSetting> PageSettingRepo
+        {
+            get
+            {
+                if (_pageSettingRepo == null)
+                    _pageSettingRepo = new GenericRepository<PageSetting>(_context);
+                return _pageSettingRepo;
             }
         }
         #endregion
@@ -120,6 +134,19 @@ namespace UnitOfWork
                 if (_rolesRepo == null)
                     _rolesRepo = new GenericRepository<Role>(_context);
                 return _rolesRepo;
+            }
+        }
+        #endregion
+
+        #region[Contact]
+        private IGenericRepository<Contact> _contactRepo;
+        public IGenericRepository<Contact> ContactRepo
+        {
+            get
+            {
+                if (_contactRepo == null)
+                    _contactRepo = new GenericRepository<Contact>(_context);
+                return _contactRepo;
             }
         }
         #endregion

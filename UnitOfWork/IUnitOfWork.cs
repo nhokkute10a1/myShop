@@ -10,6 +10,11 @@ namespace UnitOfWork
         IGenericRepository<Category> CategoryRepo { get; }
         #endregion
 
+        #region[PageSetting]
+        /*--Khởi tạo interface PageSetting--*/
+        IGenericRepository<PageSetting> PageSettingRepo { get; }
+        #endregion
+
         #region[Menu]
         /*--Khởi tạo interface-MenuRepo--*/
         IGenericRepository<Menu> MenuRepo { get; }
@@ -44,6 +49,9 @@ namespace UnitOfWork
         IGenericRepository<Role> RolesRepo { get; }
         #endregion
 
+        #region[Contact]
+        IGenericRepository<Contact> ContactRepo { get; }
+        #endregion
 
         /*============*/
         /*--Khởi tạo phương thức--*/

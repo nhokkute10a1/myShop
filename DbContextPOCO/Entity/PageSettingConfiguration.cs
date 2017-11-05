@@ -35,7 +35,7 @@ namespace DbContextPOCO.Entity
             Property(x => x.PageSettingRewrite).HasColumnName(@"PageSetting_Rewrite").HasColumnType("nvarchar").IsRequired().HasMaxLength(255);
             Property(x => x.PageSettingSearchVn).HasColumnName(@"PageSetting_SearchVN").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
             Property(x => x.PageSettingSearchEn).HasColumnName(@"PageSetting_SearchEN").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(50);
-            Property(x => x.PageSettingImg).HasColumnName(@"PageSetting_Img").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(255);
+            Property(x => x.PageSettingImg).HasColumnName(@"PageSetting_Img").HasColumnType("varchar(max)").IsOptional().IsUnicode(false);
             Property(x => x.ImgWidth).HasColumnName(@"Img_Width").HasColumnType("int").IsOptional();
             Property(x => x.ImgUnitWidth).HasColumnName(@"Img_Unit_Width").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
             Property(x => x.ImgHeight).HasColumnName(@"Img_Height").HasColumnType("int").IsOptional();

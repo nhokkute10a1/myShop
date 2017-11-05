@@ -25,7 +25,7 @@ namespace DbContextPOCO.Entity
         public string PageSettingRewrite { get; set; } // PageSetting_Rewrite (length: 255)
         public string PageSettingSearchVn { get; set; } // PageSetting_SearchVN (length: 50)
         public string PageSettingSearchEn { get; set; } // PageSetting_SearchEN (length: 50)
-        public string PageSettingImg { get; set; } // PageSetting_Img (length: 255)
+        public string PageSettingImg { get; set; } // PageSetting_Img
         public int? ImgWidth { get; set; } // Img_Width
         public string ImgUnitWidth { get; set; } // Img_Unit_Width (length: 10)
         public int? ImgHeight { get; set; } // Img_Height

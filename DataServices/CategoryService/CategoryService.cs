@@ -50,7 +50,7 @@ namespace DataServices.CategoryService
         {
             try
             {
-                _uow.MenuRepo.ExcQuery("exec sp_Category_Insert " +
+                _uow.CategoryRepo.ExcQuery("exec sp_Category_Insert " +
                     "@Category_Parent_ID," +
                     "@Category_NameVN," +
                     "@Category_NameEN," +
@@ -176,7 +176,7 @@ namespace DataServices.CategoryService
         {
             try
             {
-                _uow.MenuRepo.ExcQuery("exec sp_Category_Update " +
+                _uow.CategoryRepo.ExcQuery("exec sp_Category_Update " +
                     "@Category_ID," +
                     "@Category_Parent_ID," +
                     "@Category_NameVN," +
@@ -307,7 +307,7 @@ namespace DataServices.CategoryService
         {
             try
             {
-                _uow.MenuRepo.ExcQuery("exec sp_Category_Delete  @Category_ID",
+                _uow.CategoryRepo.ExcQuery("exec sp_Category_Delete  @Category_ID",
                      new SqlParameter("Category_ID", SqlDbType.Int)
                      {
                          Value = _params.Category_ID

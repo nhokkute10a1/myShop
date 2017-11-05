@@ -49,9 +49,11 @@
   <ItemGroup>
     <Compile Include="BaseModel.cs" />
     <Compile Include="CategoryModel\CategoryModel.cs" />
+    <Compile Include="ContactModel\ContactModel.cs" />
     <Compile Include="MenuModel\MenuModel.cs" />
     <Compile Include="OrderDetailModel\OrderDetailModel.cs" />
     <Compile Include="OrderMasterModel\OrderMasterModel.cs" />
+    <Compile Include="PageSettingModel\PageSettingModel.cs" />
     <Compile Include="ProductModel\ProductModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RolesModel\RolesModel.cs" />
@@ -65,8 +67,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdvertisementModel\" />
-    <Folder Include="ContactModel\" />
-    <Folder Include="PageSettingModel\" />
     <Folder Include="PromotionModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -146,54 +146,66 @@ namespace ApiWeb.Areas.Admin.Controllers
             {
                 if (_params != null)
                 {
-                    if (!string.IsNullOrEmpty(_params.ImageBase64))
+                    if (_params.Category_Parent_ID < 0 || _params.Category_Parent_ID==null )
                     {
-                        UploadImageWithOutResize("YouNameSystem", _params.ImageBase64, "admin", out StatusUpload, out MessageUpload, out OutputFile);
-                        if (StatusUpload)
-                        {
-                            _params.Category_Icon = OutputFile;//Đường dẫn ảnh khi đã được xử lý thành ảnh  
-                            _params.Category_Img = OutputFile;
-                            await Task.Run(() => _cateService.Insert(_params));
-                            Result.Status = true;
-                            Result.Message = "Thêm mới thành công có ảnh";
-                            Result.StatusCode = HttpStatusCode.OK;
-                            //if (_params.Msg == 0)
-                            //{
-                            //    Result.Status = false;
-                            //    Result.Message = "Có lỗi xảy ra trong quá trình cập nhật";
-                            //    Result.StatusCode = HttpStatusCode.BadRequest;
-                            //}
-                            //else
-                            //{
-                            //    Result.Status = true;
-                            //    Result.Message = "Cập nhật thành công thông tin";
-                            //    Result.StatusCode = HttpStatusCode.OK;
-                            //}
-                        }
+                        Result.Status = false;
+                        Result.Message = "Cấp menu không được trống " + _params.Category_Parent_ID;
+                        Result.StatusCode = HttpStatusCode.BadRequest;
                     }
+                    else if(string.IsNullOrEmpty(_params.Category_NameVN))
+                    {
+                        Result.Status = false;
+                        Result.Message = "Tên tiếng việt không được trống " + _params.Category_NameVN;
+                        Result.StatusCode = HttpStatusCode.BadRequest;
+                    }
+                    else if (string.IsNullOrEmpty(_params.Category_NameEN))
+                    {
+                        Result.Status = false;
+                        Result.Message = "Tên tiếng anh không được trống " + _params.Category_NameEN;
+                        Result.StatusCode = HttpStatusCode.BadRequest;
+                    }
+                    else if (string.IsNullOrEmpty(_params.Category_Rewrite))
+                    {
+                        Result.Status = false;
+                        Result.Message = "Đương dẫn thân thiện không được trống " + _params.Category_NameEN;
+                        Result.StatusCode = HttpStatusCode.BadRequest;
+                    }
+
                     else
                     {
-                        await Task.Run(() => _cateService.Insert(_params));
-                        Result.Status = true;
-                        Result.Message = "Thêm mới thành công";
-                        Result.StatusCode = HttpStatusCode.OK;
-                        //if (_params.Msg == 0)
-                        //{
-                        //    Result.Status = false;
-                        //    Result.Message = "Có lỗi xảy ra trong quá trình cập nhật";
-                        //    Result.StatusCode = HttpStatusCode.BadRequest;
-                        //}
-                        //else
-                        //{
-                        //    Result.Status = true;
-                        //    Result.Message = "Cập nhật thành công thông tin";
-                        //    Result.StatusCode = HttpStatusCode.OK;
-                        //}
+                        if (!string.IsNullOrEmpty(_params.ImageBase64))
+                        {
+                            UploadImageWithOutResize("YouNameSystem", _params.ImageBase64, "admin", out StatusUpload, out MessageUpload, out OutputFile);
+                            if (StatusUpload)
+                            {
+                                _params.Category_Icon = OutputFile;//Đường dẫn ảnh khi đã được xử lý thành ảnh  
+                                _params.Category_Img = OutputFile;
+                                await Task.Run(() => _cateService.Insert(_params));
+                                Result.Status = true;
+                                Result.Message = "Thêm mới thành công có ảnh";
+                                Result.StatusCode = HttpStatusCode.OK;
+                                //if (_params.Msg == 0)
+                                //{
+                                //    Result.Status = false;
+                                //    Result.Message = "Có lỗi xảy ra trong quá trình cập nhật";
+                                //    Result.StatusCode = HttpStatusCode.BadRequest;
+                                //}
+                                //else
+                                //{
+                                //    Result.Status = true;
+                                //    Result.Message = "Cập nhật thành công thông tin";
+                                //    Result.StatusCode = HttpStatusCode.OK;
+                                //}
+                            }
+                        }
+                        else
+                        {
+                            await Task.Run(() => _cateService.Insert(_params));
+                            Result.Status = true;
+                            Result.Message = "Thêm mới thành công";
+                            Result.StatusCode = HttpStatusCode.OK;
+                        }
                     }
-                    //await Task.Run(() => _cateService.Insert(_param));
-                    //Result.Status = true;
-                    //Result.Message = "Thêm mới thành công";
-                    //Result.StatusCode = HttpStatusCode.OK;
                 }
                 else
                 {
@@ -216,40 +228,68 @@ namespace ApiWeb.Areas.Admin.Controllers
         /*==Cập nhập Category==*/
         [Route("UpdateAsync")]
         [HttpPost]
-        public async Task<HttpResponseMessage> UpdateAsync(CategoryModel _param)
+        public async Task<HttpResponseMessage> UpdateAsync(CategoryModel _params)
         {
             var Res = Request.CreateResponse();
             var Result = new Res();
-            var query = _cateService.GetById(_param);
+            var query = _cateService.GetById(_params);
             var StatusUpload = false;
             var MessageUpload = string.Empty;
             var OutputFile = string.Empty;
             try
             {
-                if (_param != null)
+                if (_params != null)
                 {
-                    if (string.IsNullOrEmpty(_param.ImageBase64))
+                    if (_params.Category_Parent_ID  <0 || _params.Category_Parent_ID == null)
                     {
-                        _param.Category_Icon = query.Category_Icon;
-                        _param.Category_Img = query.Category_Img;
-                        await Task.Run(() => _cateService.Update(_param));
-                        Result.Status = true;
-                        Result.Message = "Cập nhập thành công";
-                        Result.StatusCode = HttpStatusCode.OK;
+                        Result.Status = false;
+                        Result.Message = "Cấp menu không được trống " + _params.Category_Parent_ID;
+                        Result.StatusCode = HttpStatusCode.BadRequest;
                     }
+                    else if (string.IsNullOrEmpty(_params.Category_NameVN))
+                    {
+                        Result.Status = false;
+                        Result.Message = "Tên tiếng việt không được trống " + _params.Category_NameVN;
+                        Result.StatusCode = HttpStatusCode.BadRequest;
+                    }
+                    else if (string.IsNullOrEmpty(_params.Category_NameEN))
+                    {
+                        Result.Status = false;
+                        Result.Message = "Tên tiếng anh không được trống " + _params.Category_NameEN;
+                        Result.StatusCode = HttpStatusCode.BadRequest;
+                    }
+                    else if (string.IsNullOrEmpty(_params.Category_Rewrite))
+                    {
+                        Result.Status = false;
+                        Result.Message = "Đương dẫn thân thiện không được trống " + _params.Category_NameEN;
+                        Result.StatusCode = HttpStatusCode.BadRequest;
+                    }
+
                     else
                     {
-                        //Viet ham upload vao day
-                        UploadImageWithOutResize("YouNameSystem", _param.ImageBase64, "admin", out StatusUpload, out MessageUpload, out OutputFile);
-                        if (StatusUpload)
+                        if (string.IsNullOrEmpty(_params.ImageBase64))
                         {
-                            _param.Category_Icon = OutputFile;//Đường dẫn ảnh khi đã được xử lý thành ảnh  
-                            _param.Category_Img = OutputFile;
-                            await Task.Run(() => _cateService.Update(_param));
+                            _params.Category_Icon = query.Category_Icon;
+                            _params.Category_Img = query.Category_Img;
+                            await Task.Run(() => _cateService.Update(_params));
                             Result.Status = true;
-                            Result.Message = "Cập nhập thành công có ảnh";
+                            Result.Message = "Cập nhập thành công";
                             Result.StatusCode = HttpStatusCode.OK;
+                        }
+                        else
+                        {
+                            //Viet ham upload vao day
+                            UploadImageWithOutResize("YouNameSystem", _params.ImageBase64, "admin", out StatusUpload, out MessageUpload, out OutputFile);
+                            if (StatusUpload)
+                            {
+                                _params.Category_Icon = OutputFile;//Đường dẫn ảnh khi đã được xử lý thành ảnh  
+                                _params.Category_Img = OutputFile;
+                                await Task.Run(() => _cateService.Update(_params));
+                                Result.Status = true;
+                                Result.Message = "Cập nhập thành công có ảnh";
+                                Result.StatusCode = HttpStatusCode.OK;
 
+                            }
                         }
                     }
                 }
