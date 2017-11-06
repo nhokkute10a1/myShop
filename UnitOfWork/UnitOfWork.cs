@@ -151,6 +151,32 @@ namespace UnitOfWork
         }
         #endregion
 
+        #region[Promotion]
+        private IGenericRepository<Promotion> _promotionRepo;
+        public IGenericRepository<Promotion> PromotionRepo
+        {
+            get
+            {
+                if (_promotionRepo == null)
+                    _promotionRepo = new GenericRepository<Promotion>(_context);
+                return _promotionRepo;
+            }
+        }
+        #endregion
+
+        #region[Advertisement]
+        private IGenericRepository<Advertisement> _advertisementRepo;
+        public IGenericRepository<Advertisement> AdvertisementRepo
+        {
+            get
+            {
+                if (_advertisementRepo == null)
+                    _advertisementRepo = new GenericRepository<Advertisement>(_context);
+                return _advertisementRepo;
+            }
+        }
+        #endregion
+
         /*============*/
         #region[System-UnitOfWork]
         /*--Khởi tạo UnitOfWork--*/

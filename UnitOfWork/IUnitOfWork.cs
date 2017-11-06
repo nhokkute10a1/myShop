@@ -53,6 +53,14 @@ namespace UnitOfWork
         IGenericRepository<Contact> ContactRepo { get; }
         #endregion
 
+        #region[Promotion]
+        IGenericRepository<Promotion> PromotionRepo { get; }
+        #endregion
+
+        #region[Advertisement]
+        IGenericRepository<Advertisement> AdvertisementRepo { get; }
+        #endregion
+
         /*============*/
         /*--Khởi tạo phương thức--*/
         void Save();

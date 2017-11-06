@@ -55,6 +55,7 @@
     <Compile Include="OrderMasterModel\OrderMasterModel.cs" />
     <Compile Include="PageSettingModel\PageSettingModel.cs" />
     <Compile Include="ProductModel\ProductModel.cs" />
+    <Compile Include="PromotionModel\PromotionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RolesModel\RolesModel.cs" />
     <Compile Include="UploadImage\AvatarProfile.cs" />
@@ -67,7 +68,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdvertisementModel\" />
-    <Folder Include="PromotionModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
