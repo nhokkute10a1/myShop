@@ -1,60 +1,51 @@
-﻿using DataModel.PromotionModel;
+﻿using DataModel.AdvertisementModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace DataServices.PromotionService
+namespace DataServices.AdvertisementService
 {
-    public class PromotionService
+    public class AdvertisementService
     {
         private readonly UnitOfWork.UnitOfWork _uow = new UnitOfWork.UnitOfWork();
-
-        /*==Get All==*/
-        public List<PromotionModel> GetAll()
+        /*==GetAll==*/
+        public List<AdvertisementModel> GetAll()
         {
-            try
-            {
-                var data = _uow.PromotionRepo.SQLQuery<PromotionModel>("sp_Promotion_GetAll").ToList();
-                return data;
-
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            var data = _uow.AdvertisementRepo.SQLQuery<AdvertisementModel>("sp_Advertisement_GetAll").ToList();
+            return data;
         }
-
         /*==Get By Id==*/
-        public PromotionModel GetById(PromotionModel _params)
+        public AdvertisementModel GetById(AdvertisementModel _params)
         {
-            var data = _uow.PromotionRepo.SQLQuery<PromotionModel>("sp_Promotion_GetById " +
-                "@Promotion_ID",
-                 new SqlParameter("Promotion_ID", SqlDbType.Int)
+            var data = _uow.PromotionRepo.SQLQuery<AdvertisementModel>("sp_Advertisement_GetById " +
+                "@Advertisement_ID",
+                 new SqlParameter("Advertisement_ID", SqlDbType.Int)
                  {
-                     Value = _params.Promotion_ID
+                     Value = _params.Advertisement_ID
                  }).FirstOrDefault();
             return data;
         }
-
         /*==Insert==*/
-        public void Insert(PromotionModel _params)
+        public void Insert(AdvertisementModel _params)
         {
             try
             {
-                _uow.ProductRepo.ExcQuery("exec sp_Promotion_Insert " +
-                    "@Promotion_NameVN," +
-                    "@Promotion_NameEN," +
-                    "@Promotion_UrlOut ," +
-                    "@Promotion_Rewrite ," +
-                    "@Promotion_SearchVN ," +
-                    "@Promotion_SearchEN," +
-                    "@Promotion_ContentVN," +
-                    "@Promotion_ContentEN," +
-                    "@Promotion_DescriptionVN," +
-                    "@Promotion_DescriptionEN," +
-                    "@Promotion_Img," +
+                _uow.AdvertisementRepo.ExcQuery("exec sp_Advertisement_Insert " +
+                    "@Advertisement_NameVN," +
+                    "@Advertisement_NameEN," +
+                    "@Advertisement_UrlOut," +
+                    "@Advertisement_Rewrite," +
+                    "@Advertisement_SearchVN," +
+                    "@Advertisement_SearchEN," +
+                    "@Advertisement_ContentVN," +
+                    "@Advertisement_ContentEN," +
+                    "@Advertisement_DescriptionVN," +
+                    "@Advertisement_DescriptionEN," +
+                    "@Advertisement_Img," +
                     "@Img_Width," +
                     "@Img_Unit_Width," +
                     "@Img_Height," +
@@ -68,59 +59,61 @@ namespace DataServices.PromotionService
                     "@UpdateBy," +
                     "@Lock ," +
                     "@Is_Active ," +
-                    "@Is_LeftPage," +
-                    "@Is_RightPage," +
+                    "@Is_TopPage ," +
+                    "@Is_LeftPage ," +
+                    "@Is_RightPage ," +
+                    "@Is_BottomPage ," +
                     "@Display_Order"
                     ,
-                    new SqlParameter("Promotion_NameVN", SqlDbType.NVarChar, (50))
+                    new SqlParameter("Advertisement_NameVN", SqlDbType.NVarChar, (50))
                     {
-                        Value = _params.Promotion_NameVN
+                        Value = _params.Advertisement_NameVN
                     },
-                    new SqlParameter("Promotion_NameEN", SqlDbType.NVarChar, (50))
+                    new SqlParameter("Advertisement_NameEN", SqlDbType.NVarChar, (50))
                     {
-                        Value = _params.Promotion_NameEN
+                        Value = _params.Advertisement_NameEN
                     },
-                    new SqlParameter("Promotion_UrlOut", SqlDbType.NVarChar, (255))
+                    new SqlParameter("Advertisement_UrlOut", SqlDbType.NVarChar, (255))
                     {
-                        Value = _params.Promotion_UrlOut ?? DBNull.Value.ToString()
+                        Value = _params.Advertisement_UrlOut ?? DBNull.Value.ToString()
                     },
-                    new SqlParameter("Promotion_Rewrite", SqlDbType.NVarChar, (255))
+                    new SqlParameter("Advertisement_Rewrite", SqlDbType.NVarChar, (255))
                     {
-                        Value = _params.Promotion_Rewrite
+                        Value = _params.Advertisement_Rewrite
                     },
-                    new SqlParameter("Promotion_SearchVN", SqlDbType.VarChar, (50))
+                    new SqlParameter("Advertisement_SearchVN", SqlDbType.VarChar, (50))
                     {
-                        Value = _params.Promotion_SearchVN ?? DBNull.Value.ToString()
+                        Value = _params.Advertisement_SearchVN ?? DBNull.Value.ToString()
                     },
-                    new SqlParameter("Promotion_SearchEN", SqlDbType.VarChar, (50))
+                    new SqlParameter("Advertisement_SearchEN", SqlDbType.VarChar, (50))
                     {
-                        Value = _params.Promotion_SearchEN ?? DBNull.Value.ToString()
+                        Value = _params.Advertisement_SearchEN ?? DBNull.Value.ToString()
                     },
-                    new SqlParameter("Promotion_ContentVN", SqlDbType.NVarChar)
+                    new SqlParameter("Advertisement_ContentVN", SqlDbType.NVarChar)
                     {
-                        Value = _params.Promotion_ContentVN ?? DBNull.Value.ToString()
+                        Value = _params.Advertisement_ContentVN ?? DBNull.Value.ToString()
                     },
-                    new SqlParameter("Promotion_ContentEN", SqlDbType.NVarChar)
+                    new SqlParameter("Advertisement_ContentEN", SqlDbType.NVarChar)
                     {
-                        Value = _params.Promotion_ContentEN ?? DBNull.Value.ToString()
+                        Value = _params.Advertisement_ContentEN ?? DBNull.Value.ToString()
                     },
-                    new SqlParameter("Promotion_DescriptionVN", SqlDbType.NVarChar)
+                    new SqlParameter("Advertisement_DescriptionVN", SqlDbType.NVarChar)
                     {
-                        Value = _params.Promotion_DescriptionVN ?? DBNull.Value.ToString()
+                        Value = _params.Advertisement_DescriptionVN ?? DBNull.Value.ToString()
                     },
-                    new SqlParameter("Promotion_DescriptionEN", SqlDbType.NVarChar)
+                    new SqlParameter("Advertisement_DescriptionEN", SqlDbType.NVarChar)
                     {
-                        Value = _params.Promotion_DescriptionEN ?? DBNull.Value.ToString()
+                        Value = _params.Advertisement_DescriptionEN ?? DBNull.Value.ToString()
                     },
-                    new SqlParameter("Promotion_Img", SqlDbType.VarChar)
+                    new SqlParameter("Advertisement_Img", SqlDbType.VarChar)
                     {
-                        Value = _params.Promotion_Img ?? DBNull.Value.ToString()
+                        Value = _params.Advertisement_Img ?? DBNull.Value.ToString()
                     },
                     new SqlParameter("Img_Width", SqlDbType.Int)
                     {
                         Value = _params.Img_Width ?? 0
                     },
-                    new SqlParameter("Img_Unit_Width", SqlDbType.VarChar)
+                    new SqlParameter("Img_Unit_Width", SqlDbType.VarChar, (10))
                     {
                         Value = _params.Img_Unit_Width ?? DBNull.Value.ToString()
                     },
@@ -128,7 +121,7 @@ namespace DataServices.PromotionService
                     {
                         Value = _params.Img_Height ?? 0
                     },
-                    new SqlParameter("Img_Unit_Height", SqlDbType.VarChar)
+                    new SqlParameter("Img_Unit_Height", SqlDbType.VarChar, (10))
                     {
                         Value = _params.Img_Unit_Height ?? DBNull.Value.ToString()
                     },
@@ -168,44 +161,52 @@ namespace DataServices.PromotionService
                     {
                         Value = _params.Is_Active == null ? true : _params.Is_Active
                     },
+                    new SqlParameter("Is_TopPage", SqlDbType.Bit)
+                    {
+                        Value = _params.Is_TopPage == null ? true : _params.Is_TopPage
+                    },
                     new SqlParameter("Is_LeftPage", SqlDbType.Bit)
                     {
                         Value = _params.Is_LeftPage == null ? false : _params.Is_LeftPage
+
                     },
                     new SqlParameter("Is_RightPage", SqlDbType.Bit)
                     {
                         Value = _params.Is_RightPage == null ? false : _params.Is_RightPage
                     },
+                    new SqlParameter("Is_BottomPage", SqlDbType.Bit)
+                    {
+                        Value = _params.Is_BottomPage == null ? true : _params.Is_BottomPage
+                    },
                     new SqlParameter("Display_Order", SqlDbType.Int)
                     {
                         Value = _params.Display_Order ?? 1
-                    }
-                );
+                    });
             }
             catch (Exception ex)
             {
-                throw new Exception("Có lỗi xảy ra trong quá trình thêm mới " + ex.Message);
+                throw new Exception("Có lỗi xảy ra khi thêm mới " + ex.Message);
             }
         }
 
         /*==Update==*/
-        public void Update(PromotionModel _params)
+        public void Update(AdvertisementModel _params)
         {
             try
             {
-                _uow.ProductRepo.ExcQuery("exec sp_Promotion_Update " +
-                    "@Promotion_ID," +
-                    "@Promotion_NameVN," +
-                    "@Promotion_NameEN," +
-                    "@Promotion_UrlOut ," +
-                    "@Promotion_Rewrite ," +
-                    "@Promotion_SearchVN ," +
-                    "@Promotion_SearchEN," +
-                    "@Promotion_ContentVN," +
-                    "@Promotion_ContentEN," +
-                    "@Promotion_DescriptionVN," +
-                    "@Promotion_DescriptionEN," +
-                    "@Promotion_Img," +
+                _uow.AdvertisementRepo.ExcQuery("exec sp_Advertisement_Update " +
+                    "@Advertisement_ID," +
+                    "@Advertisement_NameVN," +
+                    "@Advertisement_NameEN," +
+                    "@Advertisement_UrlOut," +
+                    "@Advertisement_Rewrite," +
+                    "@Advertisement_SearchVN," +
+                    "@Advertisement_SearchEN," +
+                    "@Advertisement_ContentVN," +
+                    "@Advertisement_ContentEN," +
+                    "@Advertisement_DescriptionVN," +
+                    "@Advertisement_DescriptionEN," +
+                    "@Advertisement_Img," +
                     "@Img_Width," +
                     "@Img_Unit_Width," +
                     "@Img_Height," +
@@ -219,63 +220,65 @@ namespace DataServices.PromotionService
                     "@UpdateBy," +
                     "@Lock ," +
                     "@Is_Active ," +
-                    "@Is_LeftPage," +
-                    "@Is_RightPage," +
+                    "@Is_TopPage ," +
+                    "@Is_LeftPage ," +
+                    "@Is_RightPage ," +
+                    "@Is_BottomPage ," +
                     "@Display_Order"
                     ,
-                    new SqlParameter("Promotion_ID", SqlDbType.Int)
+                     new SqlParameter("Advertisement_ID", SqlDbType.Int)
+                     {
+                         Value = _params.Advertisement_ID
+                     },
+                    new SqlParameter("Advertisement_NameVN", SqlDbType.NVarChar, (50))
                     {
-                        Value = _params.Promotion_ID
+                        Value = _params.Advertisement_NameVN
                     },
-                    new SqlParameter("Promotion_NameVN", SqlDbType.NVarChar, (50))
+                    new SqlParameter("Advertisement_NameEN", SqlDbType.NVarChar, (50))
                     {
-                        Value = _params.Promotion_NameVN
+                        Value = _params.Advertisement_NameEN
                     },
-                    new SqlParameter("Promotion_NameEN", SqlDbType.NVarChar, (50))
+                    new SqlParameter("Advertisement_UrlOut", SqlDbType.NVarChar, (255))
                     {
-                        Value = _params.Promotion_NameEN
+                        Value = _params.Advertisement_UrlOut ?? DBNull.Value.ToString()
                     },
-                    new SqlParameter("Promotion_UrlOut", SqlDbType.NVarChar, (255))
+                    new SqlParameter("Advertisement_Rewrite", SqlDbType.NVarChar, (255))
                     {
-                        Value = _params.Promotion_UrlOut ?? DBNull.Value.ToString()
+                        Value = _params.Advertisement_Rewrite
                     },
-                    new SqlParameter("Promotion_Rewrite", SqlDbType.NVarChar, (255))
+                    new SqlParameter("Advertisement_SearchVN", SqlDbType.VarChar, (50))
                     {
-                        Value = _params.Promotion_Rewrite
+                        Value = _params.Advertisement_SearchVN ?? DBNull.Value.ToString()
                     },
-                    new SqlParameter("Promotion_SearchVN", SqlDbType.VarChar, (50))
+                    new SqlParameter("Advertisement_SearchEN", SqlDbType.VarChar, (50))
                     {
-                        Value = _params.Promotion_SearchVN ?? DBNull.Value.ToString()
+                        Value = _params.Advertisement_SearchEN ?? DBNull.Value.ToString()
                     },
-                    new SqlParameter("Promotion_SearchEN", SqlDbType.VarChar, (50))
+                    new SqlParameter("Advertisement_ContentVN", SqlDbType.NVarChar)
                     {
-                        Value = _params.Promotion_SearchEN ?? DBNull.Value.ToString()
+                        Value = _params.Advertisement_ContentVN ?? DBNull.Value.ToString()
                     },
-                    new SqlParameter("Promotion_ContentVN", SqlDbType.NVarChar)
+                    new SqlParameter("Advertisement_ContentEN", SqlDbType.NVarChar)
                     {
-                        Value = _params.Promotion_ContentVN ?? DBNull.Value.ToString()
+                        Value = _params.Advertisement_ContentEN ?? DBNull.Value.ToString()
                     },
-                    new SqlParameter("Promotion_ContentEN", SqlDbType.NVarChar)
+                    new SqlParameter("Advertisement_DescriptionVN", SqlDbType.NVarChar)
                     {
-                        Value = _params.Promotion_ContentEN ?? DBNull.Value.ToString()
+                        Value = _params.Advertisement_DescriptionVN ?? DBNull.Value.ToString()
                     },
-                    new SqlParameter("Promotion_DescriptionVN", SqlDbType.NVarChar)
+                    new SqlParameter("Advertisement_DescriptionEN", SqlDbType.NVarChar)
                     {
-                        Value = _params.Promotion_DescriptionVN ?? DBNull.Value.ToString()
+                        Value = _params.Advertisement_DescriptionEN ?? DBNull.Value.ToString()
                     },
-                    new SqlParameter("Promotion_DescriptionEN", SqlDbType.NVarChar)
+                    new SqlParameter("Advertisement_Img", SqlDbType.VarChar)
                     {
-                        Value = _params.Promotion_DescriptionEN ?? DBNull.Value.ToString()
-                    },
-                    new SqlParameter("Promotion_Img", SqlDbType.VarChar)
-                    {
-                        Value = _params.Promotion_Img ?? DBNull.Value.ToString()
+                        Value = _params.Advertisement_Img ?? DBNull.Value.ToString()
                     },
                     new SqlParameter("Img_Width", SqlDbType.Int)
                     {
                         Value = _params.Img_Width ?? 0
                     },
-                    new SqlParameter("Img_Unit_Width", SqlDbType.VarChar)
+                    new SqlParameter("Img_Unit_Width", SqlDbType.VarChar, (10))
                     {
                         Value = _params.Img_Unit_Width ?? DBNull.Value.ToString()
                     },
@@ -283,7 +286,7 @@ namespace DataServices.PromotionService
                     {
                         Value = _params.Img_Height ?? 0
                     },
-                    new SqlParameter("Img_Unit_Height", SqlDbType.VarChar)
+                    new SqlParameter("Img_Unit_Height", SqlDbType.VarChar, (10))
                     {
                         Value = _params.Img_Unit_Height ?? DBNull.Value.ToString()
                     },
@@ -323,43 +326,50 @@ namespace DataServices.PromotionService
                     {
                         Value = _params.Is_Active == null ? true : _params.Is_Active
                     },
+                    new SqlParameter("Is_TopPage", SqlDbType.Bit)
+                    {
+                        Value = _params.Is_TopPage == null ? true : _params.Is_TopPage
+                    },
                     new SqlParameter("Is_LeftPage", SqlDbType.Bit)
                     {
                         Value = _params.Is_LeftPage == null ? false : _params.Is_LeftPage
+
                     },
                     new SqlParameter("Is_RightPage", SqlDbType.Bit)
                     {
                         Value = _params.Is_RightPage == null ? false : _params.Is_RightPage
                     },
+                    new SqlParameter("Is_BottomPage", SqlDbType.Bit)
+                    {
+                        Value = _params.Is_BottomPage == null ? true : _params.Is_BottomPage
+                    },
                     new SqlParameter("Display_Order", SqlDbType.Int)
                     {
                         Value = _params.Display_Order ?? 1
-                    }
-                );
+                    });
             }
             catch (Exception ex)
             {
-                throw new Exception("Có lỗi xảy ra trong quá trình cập nhập " + ex.Message);
+                throw new Exception("Có lỗi xảy ra khi cập nhập" + ex.Message);
             }
         }
 
         /*==Delete==*/
-        public void Delete(PromotionModel _params)
+        public void Delete(AdvertisementModel _params)
         {
             try
             {
-                _uow.ProductRepo.ExcQuery("exec sp_Promotion_Delete " +
-                    "@Promotion_ID"
+                _uow.AdvertisementRepo.ExcQuery("exec sp_Advertisement_Delete " +
+                    "@Advertisement_ID" 
                     ,
-                    new SqlParameter("Promotion_ID", SqlDbType.Int)
-                    {
-                        Value = _params.Promotion_ID
-                    }
-                );
+                     new SqlParameter("Advertisement_ID", SqlDbType.Int)
+                     {
+                         Value = _params.Advertisement_ID
+                     });
             }
             catch (Exception ex)
             {
-                throw new Exception("Có lỗi xảy ra trong quá trình xóa " + ex.Message);
+                throw new Exception("Có lỗi xảy ra khi xóa" + ex.Message);
             }
         }
     }

@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdvertisementService\AdvertisementService.cs" />
     <Compile Include="CategoryService\CategoryService.cs" />
     <Compile Include="ContactService\ContactSercive.cs" />
     <Compile Include="MenuService\MenuService.cs" />
@@ -47,6 +48,7 @@
     <Compile Include="OrderMasterService\OrderMasterService.cs" />
     <Compile Include="PageSettingService\PageSettingService.cs" />
     <Compile Include="ProductService\ProductService.cs" />
+    <Compile Include="PromotionService\PromotionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RolesService\RolesService.cs" />
     <Compile Include="UserProfileService\UserProfileService.cs" />
@@ -70,9 +72,6 @@
       <Name>UnitOfWork</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="AdvertisementService\" />
-    <Folder Include="PromotionService\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

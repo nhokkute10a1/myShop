@@ -21,6 +21,7 @@ namespace DataModel.AdvertisementModel
         public bool? Is_LeftPage { get; set; } // Is_LeftPage
         public bool? Is_RightPage { get; set; } // Is_RightPage
         public bool? Is_BottomPage { get; set; } // Is_BottomPage
+        public string ImageBase64 { get; set; }
 
         public AdvertisementModel()
         {

@@ -1,31 +1,28 @@
-﻿using DataModel.CategoryModel;
-using DataServices.CategoryService;
+﻿using DataModel.PromotionModel;
+using DataServices.PromotionService;
 using System;
-using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using LibResponse;
-using Newtonsoft.Json;
 using System.Web.Http.Cors;
+using LibResponse;
+using System.Net;
+using Newtonsoft.Json;
 using System.IO;
 using System.Web;
 using System.Drawing;
 using LibCommon;
-using System.Drawing.Imaging;
 using System.Web.Configuration;
-using DataModel.UploadImage;
-using DataModel.PagingModel;
+using System.Drawing.Imaging;
 
 namespace ApiWeb.Areas.Admin.Controllers
 {
-    [RoutePrefix("api/Category")]
+    [RoutePrefix("api/Promotion")]
     /*---Fix(Access-Control-Allow-Origin)----*/
     [EnableCors("*", "*", "*")]
-    public class CategoryController : ApiController
+    public class PromotionController : ApiController
     {
-        private readonly CategoryService _cateService = new CategoryService();
-
+        private readonly PromotionService _promotionService = new PromotionService();
         #region[Define-Width-Hight]
         private string _Path = WebConfigurationManager.AppSettings["UploadFolder"];
         private int _Width = int.Parse(WebConfigurationManager.AppSettings["Width"]);
@@ -33,18 +30,16 @@ namespace ApiWeb.Areas.Admin.Controllers
         private int _WidthWeb = int.Parse(WebConfigurationManager.AppSettings["WidthWeb"]);
         private int _HeightWeb = int.Parse(WebConfigurationManager.AppSettings["HeightWeb"]);
         #endregion
-
-        /*==Lấy toàn bộ danh sách Category==*/
-        [Authorize]
-        [Route("GetAllCateAsync")]
+        /*==Get All==*/
+        [Route("GetAllAsync")]
         [HttpPost]
-        public async Task<HttpResponseMessage> GetAllCateAsync(PagingModel _params)
+        public async Task<HttpResponseMessage> GetAllAsync()
         {
             var Res = Request.CreateResponse();
             var Result = new Res();
             try
             {
-                var data = await Task.Run(() => _cateService.GetAll(_params));
+                var data = await Task.Run(() => _promotionService.GetAll());
                 if (data != null)
                 {
                     Result.Data = data;
@@ -61,23 +56,23 @@ namespace ApiWeb.Areas.Admin.Controllers
                 }
                 Res.Content = new StringContent(JsonConvert.SerializeObject(Result));
                 return Res;
+
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
         }
-
-        /*==Lấy danh sách Category theo id==*/
-        [Route("GetAllByIdAsync")]
+        /*==Get by ID==*/
+        [Route("GetByIdAsync")]
         [HttpPost]
-        public async Task<HttpResponseMessage> GetAllByIdAsync(CategoryModel _params)
+        public async Task<HttpResponseMessage> GetByIdAsync(PromotionModel _params)
         {
             var Res = Request.CreateResponse();
             var Result = new Res();
             try
             {
-                var data = await Task.Run(() => _cateService.GetById(_params));
+                var data = await Task.Run(() => _promotionService.GetById(_params));
                 if (data != null)
                 {
                     Result.Data = data;
@@ -94,6 +89,7 @@ namespace ApiWeb.Areas.Admin.Controllers
                 }
                 Res.Content = new StringContent(JsonConvert.SerializeObject(Result));
                 return Res;
+
             }
             catch (Exception ex)
             {
@@ -101,78 +97,39 @@ namespace ApiWeb.Areas.Admin.Controllers
             }
         }
 
-        /*==Lấy toàn bộ danh sách Category theo ParentID==*/
-        [Route("GetAllByIdParentAsync")]
-        [HttpPost]
-        public async Task<HttpResponseMessage> GetAllByIdParentAsync(CategoryModel _params)
-        {
-            try
-            {
-                var data = await Task.Run(() => _cateService.GetAllByParentId(_params));
-                var Res = Request.CreateResponse();
-                var Result = new Res();
-                if (data != null)
-                {
-                    Result.Data = data;
-                    Result.Status = true;
-                    Result.Message = "Call API Success";
-                    Result.StatusCode = HttpStatusCode.OK;
-                }
-                else
-                {
-                    Result.Data = null;
-                    Result.Status = false;
-                    Result.Message = "Không tìm thấy dữ liệu";
-                    Result.StatusCode = HttpStatusCode.InternalServerError;
-                }
-                Res.Content = new StringContent(JsonConvert.SerializeObject(Result));
-                return Res;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
-        /*==Thêm mới Category==*/
+        /*==Insert===*/
         [Route("CreateAsync")]
         [HttpPost]
-        public async Task<HttpResponseMessage> CreateAsync(CategoryModel _params)
+        public async Task<HttpResponseMessage> CreateAsync(PromotionModel _params)
         {
-            var Res = Request.CreateResponse();
-            var StatusUpload = false;
-            var MessageUpload = string.Empty;
-            var OutputFile = string.Empty;
-            var Result = new Res();
             try
             {
-                if (_params != null)
+                var Res = Request.CreateResponse();
+                var Result = new Res();
+                var StatusUpload = false;
+                var MessageUpload = string.Empty;
+                var OutputFile = string.Empty;
+                if (_params!=null)
                 {
-                    if (_params.Category_Parent_ID < 0 || _params.Category_Parent_ID==null )
-                    {
-                        Result.Status = false;
-                        Result.Message = "Cấp menu không được trống " + _params.Category_Parent_ID;
-                        Result.StatusCode = HttpStatusCode.BadRequest;
-                    }
-                    else if(string.IsNullOrEmpty(_params.Category_NameVN))
-                    {
-                        Result.Status = false;
-                        Result.Message = "Tên tiếng việt không được trống " + _params.Category_NameVN;
-                        Result.StatusCode = HttpStatusCode.BadRequest;
-                    }
-                    else if (string.IsNullOrEmpty(_params.Category_NameEN))
-                    {
-                        Result.Status = false;
-                        Result.Message = "Tên tiếng anh không được trống " + _params.Category_NameEN;
-                        Result.StatusCode = HttpStatusCode.BadRequest;
-                    }
-                    else if (string.IsNullOrEmpty(_params.Category_Rewrite))
-                    {
-                        Result.Status = false;
-                        Result.Message = "Đương dẫn thân thiện không được trống " + _params.Category_NameEN;
-                        Result.StatusCode = HttpStatusCode.BadRequest;
-                    }
 
+                    if (string.IsNullOrEmpty(_params.Promotion_NameVN))
+                    {
+                        Result.Status = false;
+                        Result.Message = "Tên tiếng việt không được trống " + _params.Promotion_NameVN;
+                        Result.StatusCode = HttpStatusCode.BadRequest;
+                    }
+                    else if (string.IsNullOrEmpty(_params.Promotion_NameEN))
+                    {
+                        Result.Status = false;
+                        Result.Message = "Tên tiếng anh không được trống " + _params.Promotion_NameEN;
+                        Result.StatusCode = HttpStatusCode.BadRequest;
+                    }
+                    else if (string.IsNullOrEmpty(_params.Promotion_Rewrite))
+                    {
+                        Result.Status = false;
+                        Result.Message = "Đường dẫn không được trống " + _params.Promotion_Rewrite;
+                        Result.StatusCode = HttpStatusCode.BadRequest;
+                    }
                     else
                     {
                         if (!string.IsNullOrEmpty(_params.ImageBase64))
@@ -180,29 +137,16 @@ namespace ApiWeb.Areas.Admin.Controllers
                             UploadImageWithOutResize("YouNameSystem", _params.ImageBase64, "admin", out StatusUpload, out MessageUpload, out OutputFile);
                             if (StatusUpload)
                             {
-                                _params.Category_Icon = OutputFile;//Đường dẫn ảnh khi đã được xử lý thành ảnh  
-                                _params.Category_Img = OutputFile;
-                                await Task.Run(() => _cateService.Insert(_params));
+                                _params.Promotion_Img = OutputFile;//Đường dẫn ảnh khi đã được xử lý thành ảnh  
+                                await Task.Run(() => _promotionService.Insert(_params));
                                 Result.Status = true;
                                 Result.Message = "Thêm mới thành công có ảnh";
                                 Result.StatusCode = HttpStatusCode.OK;
-                                //if (_params.Msg == 0)
-                                //{
-                                //    Result.Status = false;
-                                //    Result.Message = "Có lỗi xảy ra trong quá trình cập nhật";
-                                //    Result.StatusCode = HttpStatusCode.BadRequest;
-                                //}
-                                //else
-                                //{
-                                //    Result.Status = true;
-                                //    Result.Message = "Cập nhật thành công thông tin";
-                                //    Result.StatusCode = HttpStatusCode.OK;
-                                //}
                             }
                         }
                         else
                         {
-                            await Task.Run(() => _cateService.Insert(_params));
+                            await Task.Run(() => _promotionService.Insert(_params));
                             Result.Status = true;
                             Result.Message = "Thêm mới thành công";
                             Result.StatusCode = HttpStatusCode.OK;
@@ -217,24 +161,22 @@ namespace ApiWeb.Areas.Admin.Controllers
                 }
                 Res.Content = new StringContent(JsonConvert.SerializeObject(Result));
                 return Res;
+
             }
             catch (Exception ex)
             {
-                Result.Status = false;
-                Result.Message = "Có lỗi xảy ra trong quá trình thêm mới " + ex.Message;
-                Result.StatusCode = HttpStatusCode.BadRequest;
                 throw new Exception(ex.Message);
             }
         }
 
-        /*==Cập nhập Category==*/
+        /*==Update==*/
         [Route("UpdateAsync")]
         [HttpPost]
-        public async Task<HttpResponseMessage> UpdateAsync(CategoryModel _params)
+        public async Task<HttpResponseMessage> UpdateAsync(PromotionModel _params)
         {
             var Res = Request.CreateResponse();
             var Result = new Res();
-            var query = _cateService.GetById(_params);
+            var query = _promotionService.GetById(_params);
             var StatusUpload = false;
             var MessageUpload = string.Empty;
             var OutputFile = string.Empty;
@@ -242,28 +184,22 @@ namespace ApiWeb.Areas.Admin.Controllers
             {
                 if (_params != null)
                 {
-                    if (_params.Category_Parent_ID  <0 || _params.Category_Parent_ID == null)
+                    if (string.IsNullOrEmpty(_params.Promotion_NameVN))
                     {
                         Result.Status = false;
-                        Result.Message = "Cấp menu không được trống " + _params.Category_Parent_ID;
+                        Result.Message = "Tên tiếng việt không được trống " + _params.Promotion_NameVN;
                         Result.StatusCode = HttpStatusCode.BadRequest;
                     }
-                    else if (string.IsNullOrEmpty(_params.Category_NameVN))
+                    else if (string.IsNullOrEmpty(_params.Promotion_NameEN))
                     {
                         Result.Status = false;
-                        Result.Message = "Tên tiếng việt không được trống " + _params.Category_NameVN;
+                        Result.Message = "Tên tiếng anh không được trống " + _params.Promotion_NameEN;
                         Result.StatusCode = HttpStatusCode.BadRequest;
                     }
-                    else if (string.IsNullOrEmpty(_params.Category_NameEN))
+                    else if (string.IsNullOrEmpty(_params.Promotion_Rewrite))
                     {
                         Result.Status = false;
-                        Result.Message = "Tên tiếng anh không được trống " + _params.Category_NameEN;
-                        Result.StatusCode = HttpStatusCode.BadRequest;
-                    }
-                    else if (string.IsNullOrEmpty(_params.Category_Rewrite))
-                    {
-                        Result.Status = false;
-                        Result.Message = "Đương dẫn thân thiện không được trống " + _params.Category_NameEN;
+                        Result.Message = "Đường dẫn không được trống " + _params.Promotion_Rewrite;
                         Result.StatusCode = HttpStatusCode.BadRequest;
                     }
 
@@ -271,9 +207,8 @@ namespace ApiWeb.Areas.Admin.Controllers
                     {
                         if (string.IsNullOrEmpty(_params.ImageBase64))
                         {
-                            _params.Category_Icon = query.Category_Icon;
-                            _params.Category_Img = query.Category_Img;
-                            await Task.Run(() => _cateService.Update(_params));
+                            _params.Promotion_Img = query.Promotion_Img;
+                            await Task.Run(() => _promotionService.Update(_params));
                             Result.Status = true;
                             Result.Message = "Cập nhập thành công";
                             Result.StatusCode = HttpStatusCode.OK;
@@ -284,9 +219,8 @@ namespace ApiWeb.Areas.Admin.Controllers
                             UploadImageWithOutResize("YouNameSystem", _params.ImageBase64, "admin", out StatusUpload, out MessageUpload, out OutputFile);
                             if (StatusUpload)
                             {
-                                _params.Category_Icon = OutputFile;//Đường dẫn ảnh khi đã được xử lý thành ảnh  
-                                _params.Category_Img = OutputFile;
-                                await Task.Run(() => _cateService.Update(_params));
+                                _params.Promotion_Img = OutputFile;//Đường dẫn ảnh khi đã được xử lý thành ảnh  
+                                await Task.Run(() => _promotionService.Update(_params));
                                 Result.Status = true;
                                 Result.Message = "Cập nhập thành công có ảnh";
                                 Result.StatusCode = HttpStatusCode.OK;
@@ -313,10 +247,10 @@ namespace ApiWeb.Areas.Admin.Controllers
             }
         }
 
-        /*==Xóa Category==*/
+        /*==Xóa ==*/
         [Route("DeleteAsync")]
         [HttpPost]
-        public async Task<HttpResponseMessage> DeleteAsync(CategoryModel _param)
+        public async Task<HttpResponseMessage> DeleteAsync(PromotionModel _param)
         {
             var Res = Request.CreateResponse();
             var Result = new Res();
@@ -324,7 +258,7 @@ namespace ApiWeb.Areas.Admin.Controllers
             {
                 if (_param != null)
                 {
-                    await Task.Run(() => _cateService.Delete(_param));
+                    await Task.Run(() => _promotionService.Delete(_param));
                     Result.Status = true;
                     Result.Message = "Xóa thành công";
                     Result.StatusCode = HttpStatusCode.OK;
@@ -343,63 +277,6 @@ namespace ApiWeb.Areas.Admin.Controllers
                 Result.Status = false;
                 Result.Message = "Có lỗi xảy ra trong quá trình xóa " + ex.Message;
                 Result.StatusCode = HttpStatusCode.BadRequest;
-                throw new Exception(ex.Message);
-            }
-        }
-
-
-
-        /*==Test Update==*/
-        [Route("UploadImageAsync")]
-        [HttpPost]
-        public HttpResponseMessage UploadImageAsync(AvatarProfile model)
-        {
-            var Res = Request.CreateResponse();
-            var Result = new Res();
-            var FolderName = "YouNameSystem";
-            var FileNameAvatar = string.Empty;
-            try
-            {
-                if (!Directory.Exists(HttpContext.Current.Server.MapPath(_Path + FolderName)))
-                {
-                    Directory.CreateDirectory(HttpContext.Current.Server.MapPath(_Path + FolderName));
-                    if (!string.IsNullOrEmpty(model.ImageBase64String))
-                    {
-                        using (Image image = Common.Base64ToImage(model.ImageBase64String))
-                        {
-                            string strFileName = _Path + FolderName + "/" + model.UserName + "_" + Guid.NewGuid() + ".jpg";
-                            var iresize = Common.ResizeImage(image, _Width, _Height);
-                            iresize.Save(HttpContext.Current.Server.MapPath(strFileName), ImageFormat.Jpeg);
-                            FileNameAvatar = strFileName;
-
-                            Result.Status = true;
-                            Result.Message = "Tải ảnh lên thành công";
-                            Result.StatusCode = HttpStatusCode.OK;
-                        };
-                    }
-                }
-                else
-                {
-                    if (!string.IsNullOrEmpty(model.ImageBase64String))
-                    {
-                        using (Image image = Common.Base64ToImage(model.ImageBase64String))
-                        {
-                            string strFileName = _Path + FolderName + "/" + model.UserName + "_" + Guid.NewGuid() + ".jpg";
-                            var iresize = Common.ResizeImage(image, _Width, _Height);
-                            iresize.Save(HttpContext.Current.Server.MapPath(strFileName), ImageFormat.Jpeg);
-                            FileNameAvatar = strFileName;
-
-                            Result.Status = true;
-                            Result.Message = "Tải ảnh lên thành công";
-                            Result.StatusCode = HttpStatusCode.OK;
-                        };
-                    }
-                }
-                Res.Content = new StringContent(JsonConvert.SerializeObject(Result));
-                return Res;
-            }
-            catch (Exception ex)
-            {
                 throw new Exception(ex.Message);
             }
         }

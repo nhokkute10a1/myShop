@@ -85,7 +85,7 @@ namespace ApiWeb.Areas.Admin.Controllers
             }
         }
 
-        /*===Cập nhập===*/
+        /*===Xóa===*/
         [Route("DeleteAsync")]
         [HttpPost]
         public async Task<HttpResponseMessage> DeleteAsync(RolesModel _params)

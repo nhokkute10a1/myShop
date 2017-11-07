@@ -17,7 +17,6 @@ namespace LibRepository
         T FirstOrDefault(Expression<Func<T, bool>> predicate);
 
         IEnumerable<T> ExcCommand(string obj, params object[] parameters);
-        void ExcQuery(object p, SqlParameter sqlParameter);
         IEnumerable<TEntity> SQLQuery<TEntity>(string sql, params object[] parameters);
 
         void ExcQuery(string sql, params object[] parameters);

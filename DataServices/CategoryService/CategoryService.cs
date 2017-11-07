@@ -1,4 +1,5 @@
 ﻿using DataModel.CategoryModel;
+using DataModel.PagingModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,10 +13,25 @@ namespace DataServices.CategoryService
         private UnitOfWork.UnitOfWork _uow = new UnitOfWork.UnitOfWork();
 
         /*==GetAll -  Store ==*/
-        public List<CategoryModel> GetAll()
+        public List<CategoryModel> GetAll(PagingModel _params)
         {
-            var data = _uow.CategoryRepo
-                .SQLQuery<CategoryModel>("sp_Category_GetAll").ToList();
+            var data = _uow.CategoryRepo.SQLQuery<CategoryModel>("exec sp_Category_GetAll " +
+                  "@PageNumber," +
+                  "@PageSize," +
+                  "@KeyWord"
+                  ,
+                  new SqlParameter("PageNumber", SqlDbType.Int)
+                  {
+                      Value = _params.PageNumber
+                  },
+                  new SqlParameter("PageSize", SqlDbType.Int)
+                  {
+                      Value = _params.PageSize
+                  },
+                  new SqlParameter("KeyWord", SqlDbType.NVarChar,(255))
+                  {
+                      Value = _params.KeyWord ?? DBNull.Value.ToString()
+                  }).ToList();
             return data;
         }
 
@@ -28,7 +44,7 @@ namespace DataServices.CategoryService
                 {
                     Value = _params.Category_Parent_ID ?? 0
                 }
-                    
+
                 ).FirstOrDefault();
             return data;
         }
@@ -56,19 +72,19 @@ namespace DataServices.CategoryService
                     "@Category_NameEN," +
                     "@Category_UrlOut," +
                     "@Category_Rewrite," +
-                    "@Category_SearchVN,"+
+                    "@Category_SearchVN," +
                     "@Category_SearchEN," +
                     "@Category_Icon," +
                     "@Category_Img," +
                     "@Keyword_Titile," +
                     "@Keyword_Content," +
-                    "@Keyword_Description,"+
+                    "@Keyword_Description," +
                     "@CreateDate," +
-                    "@CreateBy,"+
+                    "@CreateBy," +
                     "@UpdateDate," +
-                    "@UpdateBy,"+
+                    "@UpdateBy," +
                     "@Lock," +
-                    "@Is_Active,"+
+                    "@Is_Active," +
                     "@Is_HomePage," +
                     "@Is_TopMenu," +
                     "@Is_BottomMenu," +

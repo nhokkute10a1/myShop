@@ -18,6 +18,7 @@ namespace DataModel.PromotionModel
         public string Promotion_Img { get; set; } // Promotion_Img (length: 255)
         public bool? Is_LeftPage { get; set; } // Is_LeftPage
         public bool? Is_RightPage { get; set; } // Is_RightPage
+        public string ImageBase64 { get; set; }
 
         public PromotionModel()
         {
