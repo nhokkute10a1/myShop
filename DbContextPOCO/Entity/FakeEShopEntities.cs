@@ -28,9 +28,12 @@ namespace DbContextPOCO.Entity
         public System.Data.Entity.DbSet<PageSetting> PageSettings { get; set; }
         public System.Data.Entity.DbSet<Product> Products { get; set; }
         public System.Data.Entity.DbSet<Promotion> Promotions { get; set; }
-        public System.Data.Entity.DbSet<Role> Roles { get; set; }
+        public System.Data.Entity.DbSet<SysFunction> SysFunctions { get; set; }
+        public System.Data.Entity.DbSet<SysFunctionGroup> SysFunctionGroups { get; set; }
+        public System.Data.Entity.DbSet<SysFunctionInGroup> SysFunctionInGroups { get; set; }
+        public System.Data.Entity.DbSet<SysGroupRole> SysGroupRoles { get; set; }
+        public System.Data.Entity.DbSet<SysUserInGroup> SysUserInGroups { get; set; }
         public System.Data.Entity.DbSet<UserProfile> UserProfiles { get; set; }
-        public System.Data.Entity.DbSet<UserRole> UserRoles { get; set; }
 
         public FakeEShopEntities()
         {
@@ -43,9 +46,12 @@ namespace DbContextPOCO.Entity
             PageSettings = new FakeDbSet<PageSetting>("PageSettingId");
             Products = new FakeDbSet<Product>("ProductId");
             Promotions = new FakeDbSet<Promotion>("PromotionId");
-            Roles = new FakeDbSet<Role>("RolesId");
+            SysFunctions = new FakeDbSet<SysFunction>("FunctionId");
+            SysFunctionGroups = new FakeDbSet<SysFunctionGroup>("SysFunctionGroupId");
+            SysFunctionInGroups = new FakeDbSet<SysFunctionInGroup>("SysFunctionInGroupId");
+            SysGroupRoles = new FakeDbSet<SysGroupRole>("GroupRolesId");
+            SysUserInGroups = new FakeDbSet<SysUserInGroup>("SysUserInGroupId");
             UserProfiles = new FakeDbSet<UserProfile>("UserProfileId");
-            UserRoles = new FakeDbSet<UserRole>("UserRolesId");
         }
 
         public int SaveChangesCount { get; private set; }

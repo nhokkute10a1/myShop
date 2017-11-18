@@ -59,10 +59,13 @@
     <Compile Include="ProductModel\ProductModel.cs" />
     <Compile Include="PromotionModel\PromotionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RolesModel\RolesModel.cs" />
+    <Compile Include="SysFunctionGroupModel\SysFunctionGroupModel.cs" />
+    <Compile Include="SysFunctionInGroupModel\SysFunctionInGroupModel.cs" />
+    <Compile Include="SysFunctionModel\SysFunctionModel.cs" />
+    <Compile Include="SysGroupRoleModel\SysGroupRoleModel.cs" />
+    <Compile Include="SysUserInGroupModel\SysUserInGroupModel.cs" />
     <Compile Include="UploadImage\AvatarProfile.cs" />
     <Compile Include="UserProfileModel\UserProfileModel.cs" />
-    <Compile Include="UserRolesModel\UserRolesModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

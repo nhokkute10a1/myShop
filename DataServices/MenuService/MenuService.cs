@@ -12,7 +12,7 @@ namespace DataServices.MenuService
         /*==GetAll -  Linq ==*/
         //public List<CategoryModel> GetAll()
         //{
-        //    var query = _uow.CategoryRepo.GetAll()
+        //    var query = _uow.MenuRepo.GetAll()
         //        .Select(x => new CategoryModel
         //        {
         //            Category_ID = x.Category_ID
@@ -24,7 +24,7 @@ namespace DataServices.MenuService
         /*==GetAll -  Store ==*/
         public List<MenuModel> GetAll()
         {
-            var data = _uow.CategoryRepo
+            var data = _uow.MenuRepo
                 .SQLQuery<MenuModel>("sp_Menu_GetAll").ToList();
             return data;
         }
@@ -32,7 +32,7 @@ namespace DataServices.MenuService
         /*==GetByIdParent -  Store ==*/
         public List<MenuModel> GetByIdParent(MenuModel _params)
         {
-            var data = _uow.CategoryRepo.SQLQuery<MenuModel>("sp_Menu_GetByIdParent " +
+            var data = _uow.MenuRepo.SQLQuery<MenuModel>("sp_Menu_GetByIdParent " +
                 "@Parent_ID",
                     new SqlParameter("Menu_ID", SqlDbType.Int)
                      {

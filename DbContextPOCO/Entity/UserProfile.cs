@@ -45,9 +45,9 @@ namespace DbContextPOCO.Entity
         /// </summary>
         public virtual System.Collections.Generic.ICollection<OrderMaster> OrderMasters { get; set; } // OrderMaster.FK_OrderMaster_UserProfile
         /// <summary>
-        /// Child UserRoles where [UserRoles].[UserProfile_ID] point to this entity (FK_UserRoles_UserProfile)
+        /// Child SysUserInGroups where [SysUserInGroup].[UserId] point to this entity (FK_SysUserInGroup_UserProfile)
         /// </summary>
-        public virtual System.Collections.Generic.ICollection<UserRole> UserRoles { get; set; } // UserRoles.FK_UserRoles_UserProfile
+        public virtual System.Collections.Generic.ICollection<SysUserInGroup> SysUserInGroups { get; set; } // SysUserInGroup.FK_SysUserInGroup_UserProfile
 
         public UserProfile()
         {
@@ -56,7 +56,7 @@ namespace DbContextPOCO.Entity
             Lock = 0;
             IsActive = true;
             OrderMasters = new System.Collections.Generic.List<OrderMaster>();
-            UserRoles = new System.Collections.Generic.List<UserRole>();
+            SysUserInGroups = new System.Collections.Generic.List<SysUserInGroup>();
         }
     }
 

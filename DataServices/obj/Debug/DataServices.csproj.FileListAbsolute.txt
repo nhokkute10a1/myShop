@@ -1,10 +1,12 @@
 E:\Project\ASP.NET\EShopPoCo\DataServices\bin\Debug\DataServices.dll
 E:\Project\ASP.NET\EShopPoCo\DataServices\bin\Debug\DataServices.pdb
+E:\Project\ASP.NET\EShopPoCo\DataServices\bin\Debug\Common.dll
 E:\Project\ASP.NET\EShopPoCo\DataServices\bin\Debug\DataModel.dll
 E:\Project\ASP.NET\EShopPoCo\DataServices\bin\Debug\DbContextPOCO.dll
 E:\Project\ASP.NET\EShopPoCo\DataServices\bin\Debug\LibRepository.dll
 E:\Project\ASP.NET\EShopPoCo\DataServices\bin\Debug\UnitOfWork.dll
 E:\Project\ASP.NET\EShopPoCo\DataServices\bin\Debug\EntityFramework.dll
+E:\Project\ASP.NET\EShopPoCo\DataServices\bin\Debug\Common.pdb
 E:\Project\ASP.NET\EShopPoCo\DataServices\bin\Debug\DataModel.pdb
 E:\Project\ASP.NET\EShopPoCo\DataServices\bin\Debug\DataModel.dll.config
 E:\Project\ASP.NET\EShopPoCo\DataServices\bin\Debug\DbContextPOCO.pdb

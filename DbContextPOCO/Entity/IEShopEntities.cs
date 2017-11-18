@@ -25,9 +25,12 @@ namespace DbContextPOCO.Entity
         System.Data.Entity.DbSet<PageSetting> PageSettings { get; set; } // PageSetting
         System.Data.Entity.DbSet<Product> Products { get; set; } // Product
         System.Data.Entity.DbSet<Promotion> Promotions { get; set; } // Promotion
-        System.Data.Entity.DbSet<Role> Roles { get; set; } // Roles
+        System.Data.Entity.DbSet<SysFunction> SysFunctions { get; set; } // SysFunction
+        System.Data.Entity.DbSet<SysFunctionGroup> SysFunctionGroups { get; set; } // SysFunctionGroup
+        System.Data.Entity.DbSet<SysFunctionInGroup> SysFunctionInGroups { get; set; } // SysFunctionInGroup
+        System.Data.Entity.DbSet<SysGroupRole> SysGroupRoles { get; set; } // SysGroupRoles
+        System.Data.Entity.DbSet<SysUserInGroup> SysUserInGroups { get; set; } // SysUserInGroup
         System.Data.Entity.DbSet<UserProfile> UserProfiles { get; set; } // UserProfile
-        System.Data.Entity.DbSet<UserRole> UserRoles { get; set; } // UserRoles
 
         int SaveChanges();
         System.Threading.Tasks.Task<int> SaveChangesAsync();

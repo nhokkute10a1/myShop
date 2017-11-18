@@ -29,7 +29,7 @@ namespace DbContextPOCO.Entity
         public string AdvertisementContentEn { get; set; } // Advertisement_ContentEN
         public string AdvertisementDescriptionVn { get; set; } // Advertisement_DescriptionVN
         public string AdvertisementDescriptionEn { get; set; } // Advertisement_DescriptionEN
-        public string AdvertisementImg { get; set; } // Advertisement_Img (length: 255)
+        public string AdvertisementImg { get; set; } // Advertisement_Img
         public int? ImgWidth { get; set; } // Img_Width
         public string ImgUnitWidth { get; set; } // Img_Unit_Width (length: 10)
         public int? ImgHeight { get; set; } // Img_Height

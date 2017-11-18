@@ -28,9 +28,12 @@ namespace DbContextPOCO.Entity
         public System.Data.Entity.DbSet<PageSetting> PageSettings { get; set; } // PageSetting
         public System.Data.Entity.DbSet<Product> Products { get; set; } // Product
         public System.Data.Entity.DbSet<Promotion> Promotions { get; set; } // Promotion
-        public System.Data.Entity.DbSet<Role> Roles { get; set; } // Roles
+        public System.Data.Entity.DbSet<SysFunction> SysFunctions { get; set; } // SysFunction
+        public System.Data.Entity.DbSet<SysFunctionGroup> SysFunctionGroups { get; set; } // SysFunctionGroup
+        public System.Data.Entity.DbSet<SysFunctionInGroup> SysFunctionInGroups { get; set; } // SysFunctionInGroup
+        public System.Data.Entity.DbSet<SysGroupRole> SysGroupRoles { get; set; } // SysGroupRoles
+        public System.Data.Entity.DbSet<SysUserInGroup> SysUserInGroups { get; set; } // SysUserInGroup
         public System.Data.Entity.DbSet<UserProfile> UserProfiles { get; set; } // UserProfile
-        public System.Data.Entity.DbSet<UserRole> UserRoles { get; set; } // UserRoles
 
         static EShopEntities()
         {
@@ -89,9 +92,12 @@ namespace DbContextPOCO.Entity
             modelBuilder.Configurations.Add(new PageSettingConfiguration());
             modelBuilder.Configurations.Add(new ProductConfiguration());
             modelBuilder.Configurations.Add(new PromotionConfiguration());
-            modelBuilder.Configurations.Add(new RoleConfiguration());
+            modelBuilder.Configurations.Add(new SysFunctionConfiguration());
+            modelBuilder.Configurations.Add(new SysFunctionGroupConfiguration());
+            modelBuilder.Configurations.Add(new SysFunctionInGroupConfiguration());
+            modelBuilder.Configurations.Add(new SysGroupRoleConfiguration());
+            modelBuilder.Configurations.Add(new SysUserInGroupConfiguration());
             modelBuilder.Configurations.Add(new UserProfileConfiguration());
-            modelBuilder.Configurations.Add(new UserRoleConfiguration());
         }
 
         public static System.Data.Entity.DbModelBuilder CreateModel(System.Data.Entity.DbModelBuilder modelBuilder, string schema)
@@ -105,9 +111,12 @@ namespace DbContextPOCO.Entity
             modelBuilder.Configurations.Add(new PageSettingConfiguration(schema));
             modelBuilder.Configurations.Add(new ProductConfiguration(schema));
             modelBuilder.Configurations.Add(new PromotionConfiguration(schema));
-            modelBuilder.Configurations.Add(new RoleConfiguration(schema));
+            modelBuilder.Configurations.Add(new SysFunctionConfiguration(schema));
+            modelBuilder.Configurations.Add(new SysFunctionGroupConfiguration(schema));
+            modelBuilder.Configurations.Add(new SysFunctionInGroupConfiguration(schema));
+            modelBuilder.Configurations.Add(new SysGroupRoleConfiguration(schema));
+            modelBuilder.Configurations.Add(new SysUserInGroupConfiguration(schema));
             modelBuilder.Configurations.Add(new UserProfileConfiguration(schema));
-            modelBuilder.Configurations.Add(new UserRoleConfiguration(schema));
             return modelBuilder;
         }
     }

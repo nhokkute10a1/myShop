@@ -50,11 +50,18 @@
     <Compile Include="ProductService\ProductService.cs" />
     <Compile Include="PromotionService\PromotionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RolesService\RolesService.cs" />
+    <Compile Include="SysFunctionGroupService\SysFunctionGroupService.cs" />
+    <Compile Include="SysFunctionInGroupService\SysFunctionInGroupService.cs" />
+    <Compile Include="SysFunctionService\SysFunctionService.cs" />
+    <Compile Include="SysGroupRoleService\SysGroupRoleService.cs" />
+    <Compile Include="SysUserInGroupService\SysUserInGroupService.cs" />
     <Compile Include="UserProfileService\UserProfileService.cs" />
-    <Compile Include="UserRolesService\UserRolesService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\LibCommon.csproj">
+      <Project>{7521CE4D-CD6F-4EF4-8BA2-DC14D6E770C0}</Project>
+      <Name>LibCommon</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataModel\DataModel.csproj">
       <Project>{64d881e4-b7c8-4bc6-afd0-f7cbf7879b02}</Project>
       <Name>DataModel</Name>

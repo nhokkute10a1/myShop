@@ -207,7 +207,7 @@ namespace ApiWeb.Areas.Admin.Controllers
                 else
                 {
                     Result.Status = false;
-                    Result.Message = "Thêm mới thất bại";
+                    Result.Message = "Xóa thất bại";
                     Result.StatusCode = HttpStatusCode.BadRequest;
                 }
                 Res.Content = new StringContent(JsonConvert.SerializeObject(Result));

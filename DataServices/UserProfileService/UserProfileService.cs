@@ -1,7 +1,10 @@
 ﻿using DataModel.UserProfileModel;
+using LibCommon;
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
 
 namespace DataServices.UserProfileService
 {
@@ -239,6 +242,74 @@ namespace DataServices.UserProfileService
             catch (Exception ex)
             {
                 throw new Exception("Có lỗi xảy ra trong quá trình xóa" + ex.Message);
+            }
+        }
+    }
+    public class ServiceLogin
+    {
+        /*==Define-UnitOfWork==*/
+        UnitOfWork.UnitOfWork _uow = new UnitOfWork.UnitOfWork();
+        /*==Define-Login-User==*/
+        public bool Login(string UserProfileEmail, string UserProfilePass)
+        {
+            return _uow.UserProfileRepo.GetAny(a => a.UserProfileEmail.Equals(UserProfileEmail, StringComparison.OrdinalIgnoreCase)
+            && a.UserProfilePass == UserProfilePass);
+        }
+        public void LoginService(UserProfileModel _params, out bool status, out string Message, out object Data)
+        {
+
+            status = false;
+            Message = string.Empty;
+            Data = null;
+            var outputParams = new SqlParameter("@Msg", SqlDbType.Int)
+            {
+                Size = 400,
+                Direction = ParameterDirection.Output
+            };
+            if (_params != null)
+            {
+                if (string.IsNullOrEmpty(_params.UserProfile_Email))
+                {
+                    status = false;
+                    Message = "Vui lòng nhập vào tên Email";
+                }
+                else if (string.IsNullOrEmpty(_params.UserProfile_Pass))
+                {
+                    status = false;
+                    Message = "Vui lòng nhập vào mật khẩu đăng nhập";
+                }
+                else
+                {
+                    var IsLogin = _uow.UserProfileRepo
+                    .SQLQuery<UserProfileModel>("sp_Login @Email,@PassWords,@Msg out",
+                    new SqlParameter("Email", SqlDbType.VarChar)
+                    {
+                        Value = _params.UserProfile_Email
+                    },
+                    new SqlParameter("PassWords", SqlDbType.VarChar)
+                    {
+                        Value = _params.UserProfile_Pass
+                    }, outputParams).FirstOrDefault();
+                    _params.Msg = (int)outputParams.Value;
+                    if (_params.Msg == 1)
+                    {
+                        status = true;
+                        Message = "Đăng nhập thành công";
+                        Data = "Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes(_params.UserProfile_Email + ":" + _params.UserProfile_Pass.ToMD5()));
+                    }
+                    else
+                    {
+                        status = false;
+                        Message = "Tên đăng nhập hoặc mật khẩu không chính xác";
+                        Data = null;
+                    }
+                }
+            }
+            else
+            {
+                status = false;
+                Message = "Đăng nhập thất bại";
+                Data = null;
             }
         }
     }

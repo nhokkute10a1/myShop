@@ -119,22 +119,40 @@
     <Compile Include="Entity\PromotionConfiguration.cs">
       <DependentUpon>DbFullContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entity\Role.cs">
+    <Compile Include="Entity\SysFunction.cs">
       <DependentUpon>DbFullContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entity\RoleConfiguration.cs">
+    <Compile Include="Entity\SysFunctionConfiguration.cs">
+      <DependentUpon>DbFullContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\SysFunctionGroup.cs">
+      <DependentUpon>DbFullContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\SysFunctionGroupConfiguration.cs">
+      <DependentUpon>DbFullContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\SysFunctionInGroup.cs">
+      <DependentUpon>DbFullContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\SysFunctionInGroupConfiguration.cs">
+      <DependentUpon>DbFullContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\SysGroupRole.cs">
+      <DependentUpon>DbFullContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\SysGroupRoleConfiguration.cs">
+      <DependentUpon>DbFullContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\SysUserInGroup.cs">
+      <DependentUpon>DbFullContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\SysUserInGroupConfiguration.cs">
       <DependentUpon>DbFullContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\UserProfile.cs">
       <DependentUpon>DbFullContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\UserProfileConfiguration.cs">
-      <DependentUpon>DbFullContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entity\UserRole.cs">
-      <DependentUpon>DbFullContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entity\UserRoleConfiguration.cs">
       <DependentUpon>DbFullContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

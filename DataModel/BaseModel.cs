@@ -21,5 +21,8 @@ namespace DataModel
         public string Img_Unit_Width { get; set; } // Img_Unit_Width (length: 10)
         public int? Img_Height { get; set; } // Img_Height
         public string Img_Unit_Height { get; set; } // Img_Unit_Height (length: 10
+
+        public int totalCount { get; set; }
+        public Double totalPages { get; set; }
     }
 }

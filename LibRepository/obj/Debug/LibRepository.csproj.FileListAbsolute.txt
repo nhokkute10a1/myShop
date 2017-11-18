@@ -5,7 +5,6 @@ E:\Project\ASP.NET\EShopPoCo\LibRepository\bin\Debug\EntityFramework.dll
 E:\Project\ASP.NET\EShopPoCo\LibRepository\bin\Debug\EntityFramework.SqlServer.dll
 E:\Project\ASP.NET\EShopPoCo\LibRepository\bin\Debug\EntityFramework.xml
 E:\Project\ASP.NET\EShopPoCo\LibRepository\bin\Debug\EntityFramework.SqlServer.xml
-E:\Project\ASP.NET\EShopPoCo\LibRepository\obj\Debug\LibRepository.csprojResolveAssemblyReference.cache
 E:\Project\ASP.NET\EShopPoCo\LibRepository\obj\Debug\LibRepository.csproj.CoreCompileInputs.cache
 E:\Project\ASP.NET\EShopPoCo\LibRepository\obj\Debug\LibRepository.dll
 E:\Project\ASP.NET\EShopPoCo\LibRepository\obj\Debug\LibRepository.pdb

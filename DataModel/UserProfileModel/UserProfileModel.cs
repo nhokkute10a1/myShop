@@ -19,6 +19,7 @@ namespace DataModel.UserProfileModel
         public string UserProfile_About_Me { get; set; } // UserProfile_About_Me
         public string UserProfile_Avatar { get; set; } // UserProfile_Avatar (length: 500)
         public string UserProfile_ConnectID { get; set; } // UserProfile_ConnectID
+        public int Msg { get; set; }
 
         public UserProfileModel()
         {

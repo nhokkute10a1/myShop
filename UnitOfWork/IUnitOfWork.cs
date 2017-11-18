@@ -37,18 +37,6 @@ namespace UnitOfWork
 
         #endregion
 
-        #region[UserProfile]
-        IGenericRepository<UserProfile> UserProfileRepo { get; }
-        #endregion
-
-        #region[UserRole]
-        IGenericRepository<UserRole> UserRolesRepo { get; }
-        #endregion
-
-        #region[Role]
-        IGenericRepository<Role> RolesRepo { get; }
-        #endregion
-
         #region[Contact]
         IGenericRepository<Contact> ContactRepo { get; }
         #endregion
@@ -59,6 +47,31 @@ namespace UnitOfWork
 
         #region[Advertisement]
         IGenericRepository<Advertisement> AdvertisementRepo { get; }
+        #endregion
+
+        /*======Phân quyền=========*/
+        #region[UserProfile]
+        IGenericRepository<UserProfile> UserProfileRepo { get; }
+        #endregion
+
+        #region[SysUserInGroup]
+        IGenericRepository<SysUserInGroup> SysUserInGroupRepo { get; }
+        #endregion
+
+        #region[SysFunctionInGroup]
+        IGenericRepository<SysFunctionInGroup> SysFunctionInGroupRepo { get; }
+        #endregion
+
+        #region[SysGroupRole]
+        IGenericRepository<SysGroupRole> SysGroupRoleRepo { get; }
+        #endregion
+
+        #region[SysFunctionGroup]
+        IGenericRepository<SysFunctionGroup> SysFunctionGroupRepo { get; }
+        #endregion
+
+        #region[SysFunction]
+        IGenericRepository<SysFunction> SysFunctionRepo { get; }
         #endregion
 
         /*============*/

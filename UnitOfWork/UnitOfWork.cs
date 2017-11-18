@@ -86,58 +86,6 @@ namespace UnitOfWork
 
         #endregion
 
-        #region[OrderDetail]
-        private IGenericRepository<OrderDetail> _orderDetailRepo;
-        public IGenericRepository<OrderDetail> OrderDetailRepo
-        {
-            get
-            {
-                if (_orderDetailRepo == null)
-                    _orderDetailRepo = new GenericRepository<OrderDetail>(_context);
-                return _orderDetailRepo;
-            }
-        }
-        #endregion
-
-        #region[UserProfile]
-        private IGenericRepository<UserProfile> _userProfileRepo;
-        public IGenericRepository<UserProfile> UserProfileRepo
-        {
-            get
-            {
-                if (_userProfileRepo == null)
-                    _userProfileRepo = new GenericRepository<UserProfile>(_context);
-                return _userProfileRepo;
-            }
-        }
-        #endregion
-
-        #region[UserRoles]
-        private IGenericRepository<UserRole> _userRolesRepo;
-        public IGenericRepository<UserRole> UserRolesRepo
-        {
-            get
-            {
-                if (_userRolesRepo == null)
-                    _userRolesRepo = new GenericRepository<UserRole>(_context);
-                return _userRolesRepo;
-            }
-        }
-        #endregion
-
-        #region[Roles]
-        private IGenericRepository<Role> _rolesRepo;
-        public IGenericRepository<Role> RolesRepo
-        {
-            get
-            {
-                if (_rolesRepo == null)
-                    _rolesRepo = new GenericRepository<Role>(_context);
-                return _rolesRepo;
-            }
-        }
-        #endregion
-
         #region[Contact]
         private IGenericRepository<Contact> _contactRepo;
         public IGenericRepository<Contact> ContactRepo
@@ -175,6 +123,103 @@ namespace UnitOfWork
                 return _advertisementRepo;
             }
         }
+        #endregion
+
+        #region[OrderDetail]
+        private IGenericRepository<OrderDetail> _orderDetailRepo;
+        public IGenericRepository<OrderDetail> OrderDetailRepo
+        {
+            get
+            {
+                if (_orderDetailRepo == null)
+                    _orderDetailRepo = new GenericRepository<OrderDetail>(_context);
+                return _orderDetailRepo;
+            }
+        }
+        #endregion
+
+        /*===Phân quyền====*/
+        #region[Phân quyền]
+
+        /*===Phân quyền====*/
+        #region[UserProfile]
+        private IGenericRepository<UserProfile> _userProfileRepo;
+        public IGenericRepository<UserProfile> UserProfileRepo
+        {
+            get
+            {
+                if (_userProfileRepo == null)
+                    _userProfileRepo = new GenericRepository<UserProfile>(_context);
+                return _userProfileRepo;
+            }
+        }
+        #endregion
+
+        #region[SysUserInGroup]
+        private IGenericRepository<SysUserInGroup> _sysUserInGroupRepo;
+        public IGenericRepository<SysUserInGroup> SysUserInGroupRepo
+        {
+            get
+            {
+                if (_sysUserInGroupRepo == null)
+                    _sysUserInGroupRepo = new GenericRepository<SysUserInGroup>(_context);
+                return _sysUserInGroupRepo;
+            }
+        }
+        #endregion
+
+        #region[SysFunctionInGroup]
+        private IGenericRepository<SysFunctionInGroup> _sysFunctionInGroupRepo;
+        public IGenericRepository<SysFunctionInGroup> SysFunctionInGroupRepo
+        {
+            get
+            {
+                if (_sysFunctionInGroupRepo == null)
+                    _sysFunctionInGroupRepo = new GenericRepository<SysFunctionInGroup>(_context);
+                return _sysFunctionInGroupRepo;
+            }
+        }
+        #endregion
+
+        #region[SysGroupRole]
+        private IGenericRepository<SysGroupRole> _sysGroupRoleRepo;
+        public IGenericRepository<SysGroupRole> SysGroupRoleRepo
+        {
+            get
+            {
+                if (_sysGroupRoleRepo == null)
+                    _sysGroupRoleRepo = new GenericRepository<SysGroupRole>(_context);
+                return _sysGroupRoleRepo;
+            }
+        }
+        #endregion
+
+        #region[SysFunctionGroup]
+        private IGenericRepository<SysFunctionGroup> _sysFunctionGroupRepo;
+        public IGenericRepository<SysFunctionGroup> SysFunctionGroupRepo
+        {
+            get
+            {
+                if (_sysFunctionGroupRepo == null)
+                    _sysFunctionGroupRepo = new GenericRepository<SysFunctionGroup>(_context);
+                return _sysFunctionGroupRepo;
+            }
+        }
+        #endregion
+
+        #region[SysFunction]
+        private IGenericRepository<SysFunction> _sysFunctionRepo;
+        public IGenericRepository<SysFunction> SysFunctionRepo
+        {
+            get
+            {
+                if (_sysFunctionRepo == null)
+                    _sysFunctionRepo = new GenericRepository<SysFunction>(_context);
+                return _sysFunctionRepo;
+            }
+        }
+        #endregion
+
         #endregion
 
         /*============*/

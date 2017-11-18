@@ -16,12 +16,14 @@ using System.Drawing.Imaging;
 using System.Web.Configuration;
 using DataModel.UploadImage;
 using DataModel.PagingModel;
+using ApiWeb.Authentications;
 
 namespace ApiWeb.Areas.Admin.Controllers
 {
     [RoutePrefix("api/Category")]
     /*---Fix(Access-Control-Allow-Origin)----*/
     [EnableCors("*", "*", "*")]
+    [AuthenticationBasic]
     public class CategoryController : ApiController
     {
         private readonly CategoryService _cateService = new CategoryService();
@@ -35,7 +37,7 @@ namespace ApiWeb.Areas.Admin.Controllers
         #endregion
 
         /*==Lấy toàn bộ danh sách Category==*/
-        [Authorize]
+       
         [Route("GetAllCateAsync")]
         [HttpPost]
         public async Task<HttpResponseMessage> GetAllCateAsync(PagingModel _params)

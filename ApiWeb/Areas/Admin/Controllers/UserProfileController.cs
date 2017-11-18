@@ -9,14 +9,48 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using LibResponse;
 using Newtonsoft.Json;
+using System.Web.Http.Cors;
 
 namespace ApiWeb.Areas.Admin.Controllers
 {
     [RoutePrefix("api/UserProfile")]
+    /*---Fix(Access-Control-Allow-Origin)----*/
+    [EnableCors("*", "*", "*")]
     public class UserProfileController : ApiController
     {
         private readonly UserProfileService _userProfileService = new UserProfileService();
+        private readonly ServiceLogin _serviceLogin = new ServiceLogin();
 
+
+        /*==Đăng Nhập==*/
+        #region[Login]
+        /*==Lấy danh sách người dùng==*/
+        [Route("LoginAsync")]
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<HttpResponseMessage> LoginAsync(UserProfileModel _params)
+        {
+            var status = false;
+            var Message = string.Empty;
+            object Data = null;
+            var Res = Request.CreateResponse();
+            var Result = new Res();
+            try
+            {
+                await Task.Run(() => _serviceLogin.LoginService(_params, out status, out Message, out Data));
+                Result.Status = status;
+                Result.Message = Message;
+                Result.StatusCode = HttpStatusCode.OK;
+                Result.Data = Data;
+                Res.Content = new StringContent(JsonConvert.SerializeObject(Result));
+                return Res;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        #endregion
         /*===Thêm mới===*/
         [Route("CreateAsync")]
         [HttpPost]

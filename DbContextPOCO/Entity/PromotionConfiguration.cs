@@ -39,7 +39,7 @@ namespace DbContextPOCO.Entity
             Property(x => x.PromotionContentEn).HasColumnName(@"Promotion_ContentEN").HasColumnType("nvarchar(max)").IsOptional();
             Property(x => x.PromotionDescriptionVn).HasColumnName(@"Promotion_DescriptionVN").HasColumnType("nvarchar(max)").IsOptional();
             Property(x => x.PromotionDescriptionEn).HasColumnName(@"Promotion_DescriptionEN").HasColumnType("nvarchar(max)").IsOptional();
-            Property(x => x.PromotionImg).HasColumnName(@"Promotion_Img").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(255);
+            Property(x => x.PromotionImg).HasColumnName(@"Promotion_Img").HasColumnType("varchar(max)").IsOptional().IsUnicode(false);
             Property(x => x.ImgWidth).HasColumnName(@"Img_Width").HasColumnType("int").IsOptional();
             Property(x => x.ImgUnitWidth).HasColumnName(@"Img_Unit_Width").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
             Property(x => x.ImgHeight).HasColumnName(@"Img_Height").HasColumnType("int").IsOptional();
