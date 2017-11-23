@@ -33,10 +33,11 @@ namespace DataServices.SysUserInGroupService
         }
 
         /*==GetAllById  ==*/
+
         public SysUserInGroupModel GetById(SysUserInGroupModel _params)
         {
-            var data = _uow.SysUserInGroupRepo.SQLQuery<SysUserInGroupModel>("sp_SysUserInGroup_GetById "
-                + "@SysUserInGroupId",
+            var data = _uow.SysUserInGroupRepo
+                .SQLQuery<SysUserInGroupModel>("sp_SysUserInGroup_GetById " + "@SysUserInGroupId",
                 new SqlParameter("SysUserInGroupId", SqlDbType.Int)
                 {
                     Value = _params.SysUserInGroupId
@@ -145,7 +146,7 @@ namespace DataServices.SysUserInGroupService
                     },
                     new SqlParameter("CreateDate", SqlDbType.Date)
                     {
-                        Value = _params.CreateDate == null ? DateTime.Now : _params.CreateDate
+                        Value = _params.CreateDate
                     },
                     new SqlParameter("CreateBy", SqlDbType.Int)
                     {
@@ -172,7 +173,7 @@ namespace DataServices.SysUserInGroupService
         {
             try
             {
-                _uow.SysUserInGroupRepo.ExcQuery("exec sp_SysUserInGroup_Update " +
+                _uow.SysUserInGroupRepo.ExcQuery("exec sp_SysUserInGroup_Delete " +
                     "@SysUserInGroupId" ,
                     new SqlParameter("SysUserInGroupId", SqlDbType.Int)
                     {
@@ -184,6 +185,38 @@ namespace DataServices.SysUserInGroupService
             {
                 throw new Exception("Có lỗi xãy ra trong quá trình xóa" + ex.Message);
             }
+        }
+
+        /*--Kiểm tra quyền--*/
+        public List<CheckPermissionModel> CheckPermission(string UserName)
+        {
+
+            var data = (from SysUserInGroup in _uow.SysUserInGroupRepo.GetAll()
+                        where SysUserInGroup.IsActive == true
+
+                        join SysGroupRoles in _uow.SysGroupRoleRepo.GetAll() on SysUserInGroup.GroupRolesId equals SysGroupRoles.GroupRolesId into tbSysGroupRoles
+                        from SysGroupRoles in tbSysGroupRoles.DefaultIfEmpty()
+
+                        join UserProfile in _uow.UserProfileRepo.GetAll() on SysUserInGroup.UserId equals UserProfile.UserProfileId into tbSysUser
+                        from UserProfile in tbSysUser.DefaultIfEmpty()
+                        where UserProfile.UserProfileEmail == UserName
+
+                        join SysFunctionInGroup in _uow.SysFunctionInGroupRepo.GetAll() on SysGroupRoles.GroupRolesId equals SysFunctionInGroup.GroupRolesId into tbSysFunctionInGroup
+                        from SysFunctionInGroup in tbSysFunctionInGroup.DefaultIfEmpty()
+                        where SysFunctionInGroup.IsActive == true
+
+                        join SysFunction in _uow.SysFunctionRepo.GetAll() on SysFunctionInGroup.FuctionId equals SysFunction.FunctionId into tbSysFunction
+                        from SysFunction in tbSysFunction.DefaultIfEmpty()
+                        select new CheckPermissionModel
+                        {
+                            SysUserInGroupId = SysUserInGroup.SysUserInGroupId,
+                            GroupRolesId = SysUserInGroup.GroupRolesId,
+                            UsersId = SysUserInGroup.UserId,
+
+                            FunctionCode = SysFunction.FunctionCode,
+                            FunctionName = SysFunction.FunctionName
+                        }).ToList();
+            return data;
         }
     }
 }

@@ -22,16 +22,14 @@ namespace DbContextPOCO.Entity
         public string UserProfileLastName { get; set; } // UserProfile_LastName (length: 50)
         public string UserProfileFirstName { get; set; } // UserProfile_FirstName (length: 50)
         public string UserProfileFullName { get; set; } // UserProfile_FullName (length: 255)
-        public int UserProfileBirthDay { get; set; } // UserProfile_Birth_Day
-        public int UserProfileBirthMonth { get; set; } // UserProfile_Birth_Month
-        public int UserProfileBirthYear { get; set; } // UserProfile_Birth_Year
+        public System.DateTime? UserProfileBirthDay { get; set; } // UserProfile_BirthDay
         public int? UserProfileAge { get; set; } // UserProfile_Age
-        public string UserProfileGender { get; set; } // UserProfile_Gender (length: 10)
+        public int? UserProfileGender { get; set; } // UserProfile_Gender
         public string UserProfilePhone { get; set; } // UserProfile_Phone (length: 20)
         public string UserProfileEmail { get; set; } // UserProfile_Email (length: 50)
         public string UserProfilePass { get; set; } // UserProfile_Pass (length: 50)
         public string UserProfileAboutMe { get; set; } // UserProfile_About_Me
-        public string UserProfileAvatar { get; set; } // UserProfile_Avatar (length: 500)
+        public string UserProfileAvatar { get; set; } // UserProfile_Avatar
         public string UserProfileConnectId { get; set; } // UserProfile_ConnectID
         public System.DateTime? CreateDate { get; set; } // CreateDate
         public System.DateTime? UpdateDate { get; set; } // UpdateDate

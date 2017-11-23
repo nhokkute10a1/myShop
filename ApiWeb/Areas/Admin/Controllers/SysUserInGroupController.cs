@@ -56,9 +56,9 @@ namespace ApiWeb.Areas.Admin.Controllers
         }
 
         /*==Lấy danh sách Category theo id==*/
-        [Route("GetAllByIdAsync ")]
+        [Route("GetByIdAsync")]
         [HttpPost]
-        public async Task<HttpResponseMessage> GetAllByIdAsync(SysUserInGroupModel _params)
+        public async Task<HttpResponseMessage> GetByIdAsync(SysUserInGroupModel _params)
         {
             var Res = Request.CreateResponse();
             var Result = new Res();
@@ -108,7 +108,7 @@ namespace ApiWeb.Areas.Admin.Controllers
                     else if (_param.UserId < 0 || _param.UserId == null)
                     {
                         Result.Status = false;
-                        Result.Message = "Tên người dùng không được trống " + _param.SysUserInGroupId;
+                        Result.Message = "Tài khoản dùng không được trống " + _param.SysUserInGroupId;
                         Result.StatusCode = HttpStatusCode.OK;
                     }
                     else

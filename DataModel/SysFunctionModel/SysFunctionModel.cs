@@ -15,6 +15,8 @@ namespace DataModel.SysFunctionModel
         public string FunctionName { get; set; } // FunctionName (length: 50)
         public string ButtonId { get; set; } // ButtonId (length: 50)
 
+        public string SysFunctionGroupName { get; set; } // SysFunctionGroupName (length: 255)
+
         public SysFunctionModel()
         {
             Display_Order = 1;

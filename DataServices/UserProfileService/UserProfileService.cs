@@ -1,6 +1,8 @@
-﻿using DataModel.UserProfileModel;
+﻿using DataModel.PagingModel;
+using DataModel.UserProfileModel;
 using LibCommon;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -11,7 +13,35 @@ namespace DataServices.UserProfileService
     public class UserProfileService
     {
         UnitOfWork.UnitOfWork _ouw = new UnitOfWork.UnitOfWork();
+        /*==GetAll  ==*/
+        public List<UserProfileModel> GetAll(PagingModel _params)
+        {
+            var data = _ouw.SysFunctionRepo.SQLQuery<UserProfileModel>("exec sp_UserProfile_GetAll " +
+                  "@PageNumber," +
+                  "@PageSize"
+                  ,
+                  new SqlParameter("PageNumber", SqlDbType.Int)
+                  {
+                      Value = _params.PageNumber
+                  },
+                  new SqlParameter("PageSize", SqlDbType.Int)
+                  {
+                      Value = _params.PageSize
+                  }).ToList();
+            return data;
+        }
 
+        /*==GetAllById  ==*/
+        public UserProfileModel GetById(UserProfileModel _params)
+        {
+            var data = _ouw.SysFunctionRepo.SQLQuery<UserProfileModel>("sp_UserProfile_GetById "
+                + "@UserProfile_ID",
+                new SqlParameter("UserProfile_ID", SqlDbType.Int)
+                {
+                    Value = _params.UserProfile_ID
+                }).FirstOrDefault();
+            return data;
+        }
         /*===Thêm mới===*/
         public void Insert(UserProfileModel _params)
         {
@@ -21,9 +51,7 @@ namespace DataServices.UserProfileService
                   "@UserProfile_LastName,"+
                   "@UserProfile_FirstName,"+
                   "@UserProfile_FullName,"+
-                  "@UserProfile_Birth_Day,"+
-                  "@UserProfile_Birth_Month,"+
-                  "@UserProfile_Birth_Year,"+
+                  "@UserProfile_BirthDay," +
                   "@UserProfile_Age,"+
                   "@UserProfile_Gender,"+
                   "@UserProfile_Phone,"+
@@ -49,25 +77,17 @@ namespace DataServices.UserProfileService
                   {
                       Value = _params.UserProfile_FullName
                   },
-                  new SqlParameter("UserProfile_Birth_Day", SqlDbType.Int)
+                  new SqlParameter("UserProfile_BirthDay", SqlDbType.Date)
                   {
-                      Value = _params.UserProfile_Birth_Day
-                  },
-                  new SqlParameter("UserProfile_Birth_Month", SqlDbType.Int)
-                  {
-                      Value = _params.UserProfile_Birth_Month
-                  },
-                  new SqlParameter("UserProfile_Birth_Year", SqlDbType.Int)
-                  {
-                      Value = _params.UserProfile_Birth_Year
+                      Value = _params.UserProfile_BirthDay == null ? DateTime.Now : _params.UserProfile_BirthDay
                   },
                   new SqlParameter("UserProfile_Age", SqlDbType.Int)
                   {
                       Value = _params.UserProfile_Age ??0
                   },
-                  new SqlParameter("UserProfile_Gender", SqlDbType.NVarChar)
+                  new SqlParameter("UserProfile_Gender", SqlDbType.Int)
                   {
-                      Value = _params.UserProfile_Gender
+                      Value = _params.UserProfile_Gender ?? 1
                   },
                   new SqlParameter("UserProfile_Phone", SqlDbType.VarChar)
                   {
@@ -127,14 +147,11 @@ namespace DataServices.UserProfileService
                   "@UserProfile_LastName," +
                   "@UserProfile_FirstName," +
                   "@UserProfile_FullName," +
-                  "@UserProfile_Birth_Day," +
-                  "@UserProfile_Birth_Month," +
-                  "@UserProfile_Birth_Year," +
+                  "@UserProfile_BirthDay," +
                   "@UserProfile_Age," +
                   "@UserProfile_Gender," +
                   "@UserProfile_Phone," +
                   "@UserProfile_Email," +
-                  "@UserProfile_Pass," +
                   "@UserProfile_About_Me," +
                   "@UserProfile_Avatar," +
                   "@UserProfile_ConnectID," +
@@ -157,27 +174,20 @@ namespace DataServices.UserProfileService
                   },
                   new SqlParameter("UserProfile_FullName", SqlDbType.NVarChar)
                   {
-                      Value = _params.UserProfile_FullName
+                      Value = _params.UserProfile_FullName == null 
+                      ? _params.UserProfile_LastName +' ' + _params.UserProfile_FirstName : _params.UserProfile_FullName
                   },
-                  new SqlParameter("UserProfile_Birth_Day", SqlDbType.Int)
+                  new SqlParameter("UserProfile_BirthDay", SqlDbType.Date)
                   {
-                      Value = _params.UserProfile_Birth_Day
-                  },
-                  new SqlParameter("UserProfile_Birth_Month", SqlDbType.Int)
-                  {
-                      Value = _params.UserProfile_Birth_Month
-                  },
-                  new SqlParameter("UserProfile_Birth_Year", SqlDbType.Int)
-                  {
-                      Value = _params.UserProfile_Birth_Year
+                      Value = _params.UserProfile_BirthDay == null ? DateTime.Now : _params.UserProfile_BirthDay
                   },
                   new SqlParameter("UserProfile_Age", SqlDbType.Int)
                   {
                       Value = _params.UserProfile_Age ?? 0
                   },
-                  new SqlParameter("UserProfile_Gender", SqlDbType.NVarChar)
+                  new SqlParameter("UserProfile_Gender", SqlDbType.Int)
                   {
-                      Value = _params.UserProfile_Gender
+                      Value = _params.UserProfile_Gender ?? 0
                   },
                   new SqlParameter("UserProfile_Phone", SqlDbType.VarChar)
                   {
@@ -186,10 +196,6 @@ namespace DataServices.UserProfileService
                   new SqlParameter("UserProfile_Email", SqlDbType.VarChar)
                   {
                       Value = _params.UserProfile_Email
-                  },
-                  new SqlParameter("UserProfile_Pass", SqlDbType.VarChar)
-                  {
-                      Value = _params.UserProfile_Pass
                   },
                   new SqlParameter("UserProfile_About_Me", SqlDbType.NVarChar)
                   {

@@ -15,6 +15,9 @@ namespace DataModel.SysFunctionInGroupModel
         public string SysFunctionInGroupCode { get; set; } // SysFunctionInGroupCode (length: 50)
         public string SysFunctionInGroupName { get; set; } // SysFunctionInGroupName (length: 10)
 
+        public string FunctionName { get; set; } // FunctionName (length: 50)
+        public string GroupRolesName { get; set; } // GroupRolesIName (length: 50)
+
         public SysFunctionInGroupModel()
         {
             Display_Order = 1;

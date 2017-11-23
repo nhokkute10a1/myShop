@@ -8,12 +8,17 @@ using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using System.Web.Http;
 using System.Linq;
+using DataServices.SysUserInGroupService;
+using System.Web.Configuration;
+using System.Collections.Generic;
+using System.Web;
 
 namespace ApiWeb.Authentications
 {
     public class AuthenticationBasic : AuthorizationFilterAttribute
     {
         private readonly DataServices.UserProfileService.ServiceLogin _serviceLogin = new DataServices.UserProfileService.ServiceLogin();
+        private readonly SysUserInGroupService _service = new SysUserInGroupService();
         public override void OnAuthorization(HttpActionContext actionContext)
         {
             if (SkipAuthorization(actionContext))
@@ -40,17 +45,25 @@ namespace ApiWeb.Authentications
                 if(_serviceLogin.Login(username, passwords))
                 {
                     Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(username), null);
-                    //actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.OK, new
-                    //{
-                    //    Status = true,
-                    //    StatusCode = 200,
-                    //    Data = new
-                    //    {
-                    //        Token = "Basic " + AuthenticationToken,
-                    //        UserName = username,
-                    //        Passwords = passwords
-                    //    }
-                    //});
+                    var _UserDeveloper = WebConfigurationManager.AppSettings["_UserDeveloper"];
+                    var result = _service.CheckPermission(username);
+                    List<string> listPermission = result.Select(a => a.FunctionCode).ToList();
+                    //Lấy tên controller và action
+                    var actionName = actionContext.ActionDescriptor.ControllerDescriptor.ControllerName + "-" +
+                                        actionContext.ActionDescriptor.ActionName;
+                    //if (username != _UserDeveloper)
+                    if (HttpContext.Current.User.Identity.Name != _UserDeveloper)
+                    {
+                        if (!listPermission.Contains(actionName))
+                        {
+                            actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized, new
+                            {
+                                Status = false,
+                                StatusCode = 401,
+                                Message = "Bạn không có quyền thực hiện chức năng [[" + actionName + "]] này"
+                            });
+                        }
+                    }
                 }
                 else
                 {

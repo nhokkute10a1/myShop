@@ -14,12 +14,14 @@ using System.Web;
 using System.Drawing;
 using LibCommon;
 using System.Drawing.Imaging;
+using ApiWeb.Authentications;
 
 namespace ApiWeb.Areas.Admin.Controllers
 {
     [RoutePrefix("api/Product")]
     /*---Fix(Access-Control-Allow-Origin)----*/
     [EnableCors("*", "*", "*")]
+    [AuthenticationBasic]
     public class ProductController : ApiController
     {
         private readonly ProductService _productService = new ProductService();

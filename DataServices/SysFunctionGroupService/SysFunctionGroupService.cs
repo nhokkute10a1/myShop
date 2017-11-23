@@ -76,7 +76,7 @@ namespace DataServices.SysFunctionGroupService
                     },
                     new SqlParameter("Is_Active", SqlDbType.Bit)
                     {
-                        Value = _params.Is_Active == null ? true :false
+                        Value = _params.Is_Active == null ? true : _params.Is_Active
                     },
                     new SqlParameter("CreateDate", SqlDbType.Date)
                     {
@@ -139,7 +139,7 @@ namespace DataServices.SysFunctionGroupService
                 },
                 new SqlParameter("Is_Active", SqlDbType.Bit)
                 {
-                    Value = _params.Is_Active == null ? true : false
+                    Value = _params.Is_Active == null ? true : _params.Is_Active
                 },
                 new SqlParameter("CreateDate", SqlDbType.Date)
                 {
